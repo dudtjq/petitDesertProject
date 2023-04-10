@@ -2,6 +2,59 @@
 
 #wrap{
 	width:1200px;
-	height:1000px;
 	margin:auto;
+}
+
+.header{
+	height:100px;
+	background-color:#FFFFCC;
+}
+
+.nav{
+	width:500px;
+	height:50px;
+	margin:auto;
+}
+
+.section{
+	width:900px;
+	margin:auto;
+}
+
+.login-box{
+	width:500px;
+	margin:auto;
+}
+
+.text{
+	width:400px;
+	height:150px;
+	
+}
+
+.img1{
+	width:800px;
+	height:300px;
+	margin:auto;
+}
+
+.img2{
+	width:800px;
+	height:300px;
+	margin:auto;
+}
+
+.img3{
+	width:400px;
+	height:300px;
+}
+
+.img4{
+	width:400px;
+	height:300px;
+}
+
+.footer{
+	height:200px;
+	
 }
