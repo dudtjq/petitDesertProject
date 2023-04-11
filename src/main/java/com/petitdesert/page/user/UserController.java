@@ -16,4 +16,12 @@ public class UserController {
 		
 	}
 	
+	// 로그인 페이지 보여주는 api
+		@GetMapping("/signin/view")
+		public String signin() {
+			
+			return "user/signin";
+			
+		}
+	
 }

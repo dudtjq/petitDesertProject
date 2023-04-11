@@ -46,8 +46,15 @@
 							
 							<input type="text" id="nameInput" class="form-control mt-3" placeholder="이름">
 							<input type="text" id="emailInput" class="form-control mt-3" placeholder="이메일">
-							
-							<input type="number" min="0" max="1" id="numberInput" class="form-control mt-3" placeholder="관리자면 1, 일반회원은 0을 작성해주세요.">
+						<%-- 
+							<div class="mt-3">
+								<select id="choice" class="form-control col-3">
+								 	<option value='manager'>관리자</option>
+	  								<option value='member'>일반 회원</option>
+								</select>
+							</div>
+						--%>	
+							<input type="number" min="0" max="1" id="numberInput" class="form-control mt-3" placeholder="관리자는 1, 일반회원은 0을 작성해주세요.">
 							
 							<button type="button" id="signUpBtn" class="btn btn-warning text-white font-weight-bold btn-block mt-3">회원가입</button>
 					
@@ -55,7 +62,7 @@
 						
 					</div>
 					<div class="d-flex justify-content-center">
-						계정이 있으신가요? <a href="#">로그인</a>
+						계정이 있으신가요? <a href="/user/signin/view">로그인</a>
 					</div>
 				</div>
 		</section>
@@ -189,7 +196,8 @@
 							, success:function(data){
 								if(data.result == "success"){
 									// 로그인 페이지 만들면 location을 통해 url 쓰기
-									alert("회원가입 성공");
+									//alert("회원가입 성공");
+									location.href = "/user/signin/view";
 								}else{
 									alert("회원가입 실패");
 								}

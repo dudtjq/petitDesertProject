@@ -3,7 +3,9 @@ package com.petitdesert.page.user.bo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.petitdesert.page.common.EncryptService;
 import com.petitdesert.page.user.dao.UserDAO;
+import com.petitdesert.page.user.model.User;
 
 @Service
 public class UserBO {
@@ -20,7 +22,9 @@ public class UserBO {
 			, int checkNumber
 			) {
 		
-		return userDAO.insertUser(loginId, password, passwordCheck, name, email, checkNumber);
+		String encryptPassword = EncryptService.md5(password);
+		
+		return userDAO.insertUser(loginId, encryptPassword, passwordCheck, name, email, checkNumber);
 		
 	}
 	
@@ -35,6 +39,14 @@ public class UserBO {
 			// 중복
 			return true;
 		}
+		
+	}
+	
+	public User getUser(String loginId, String password) {
+		
+		String encryptPassword = EncryptService.md5(password);
+		
+		return userDAO.selectUser(loginId, encryptPassword);
 		
 	}
 	
