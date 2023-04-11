@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Petit Desert</title>
 
 	  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -41,10 +41,10 @@
 				</div>
 				<div class="d-flex justify-content-center">
 					<div class="img3 bg-warning d-block">
-						<img alt="커피 사진" width="100%" height="100%" src="https://cdn.pixabay.com/photo/2020/10/07/12/33/cafe-5635015__340.jpg">
+						<img alt="카페 내부 사진" width="100%" height="100%" src="https://cdn.pixabay.com/photo/2020/10/07/12/33/cafe-5635015__340.jpg">
 					</div>
 					<div class="img4 bg-success d-block">
-						<img alt="커피 사진" width="100%" height="100%" src="https://cdn.pixabay.com/photo/2015/11/23/12/13/cocktail-1058237__340.jpg">
+						<img alt="에이드음료 사진" width="100%" height="100%" src="https://cdn.pixabay.com/photo/2015/11/23/12/13/cocktail-1058237__340.jpg">
 					</div>
 				</div>
 			</div>	

@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Petit Desert 회원가입 회면</title>
+<title>회원가입 회면</title>
 
 	  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -38,8 +38,8 @@
 								<button type="button" class="btn btn-warning text-white font-weight-bold btn-sm ml-2" id="duplicationBtn">중복확인</button>
 							</div>
 						
-							<div class="small text-success d-none" id="idText1">사용가능한 아이디 입니다</div>
-							<div class="small text-danger d-none" id="idText2">중복된 아이디 입니다</div>
+							<div class="small text-success d-none" id="useText">사용가능한 아이디 입니다</div>
+							<div class="small text-danger d-none" id="duplicationText">중복된 아이디 입니다</div>
 						
 							<input type="password" id="passwordInput" class="form-control mt-3" placeholder="패스워드">
 							<input type="password" id="passwordCheckInput" class="form-control mt-3" placeholder="패스워드 확인">
@@ -47,7 +47,7 @@
 							<input type="text" id="nameInput" class="form-control mt-3" placeholder="이름">
 							<input type="text" id="emailInput" class="form-control mt-3" placeholder="이메일">
 							
-							<input type="text" id="numberInput" class="form-control mt-3" placeholder="확인숫자">
+							<input type="number" min="0" max="1" id="numberInput" class="form-control mt-3" placeholder="관리자면 1, 일반회원은 0을 작성해주세요.">
 							
 							<button type="button" id="signUpBtn" class="btn btn-warning text-white font-weight-bold btn-block mt-3">회원가입</button>
 					
@@ -66,6 +66,147 @@
 			
 			
 			</div>
+			
+			<script>
+			
+				$(document).ready(function(){
+					
+					// 처음엔 중복체크가 진행이 안된 상태
+					var isChecked = false;
+					// 중복이 맞으면 추가가 되지 못하게 true로 셋팅!
+					var isDuplicate = true;
+					
+					$("#loginIdInput").on("input", function(){
+						// 초기화면 처럼 셋팅 진행
+						isChecked = false;
+						isDuplicateId = true;
+						// 중복확인을 진행 안했으니 문구가 안보이게 하기.
+						$("#useText").addClass("d-none");
+					 	$("#duplicationText").addClass("d-none");
+					});
+					
+					$("#duplicationBtn").on("click", function(){
+						
+						let loginId = $("#loginIdInput").val();
+						
+						if(loginId == ""){
+							alert("아이디를 입력하세요.");
+							return;
+						}
+						
+						$.ajax({
+							type:"get"
+							, url:"/user/duplicate_id"
+							, data:{"loginId":loginId}
+							, success:function(data){
+								
+								// 중복체크 여부 저장 성공과 조건문 사이인 중가로 에다가 넣기!
+								isChecked = true;
+								
+								isDuplicateId = data.duplicate_id;
+								
+								if(data.duplicate_id){
+									// 중복
+									$("#duplicationText").removeClass("d-none");
+									$("#useText").addClass("d-none");
+								
+								}else{
+									// 사용 가능
+									$("#useText").removeClass("d-none");
+									$("#duplicationText").addClass("d-none");
+								
+								}
+								
+							}
+							, error:function(){
+								alert("중복확인 에러.");
+							}
+						});
+						
+					});
+					
+					$("#signUpBtn").on("click", function(){
+						
+						let loginId = $("#loginIdInput").val();
+						let password = $("#passwordInput").val();
+						let passwordCheck = $("#passwordCheckInput").val();
+						let name = $("#nameInput").val();
+						let email = $("#emailInput").val();
+						let number =$("#numberInput").val();
+						
+						// 회원 가입 버튼 이벤트 적용 확인
+						// alert();
+						
+						if(loginId == ""){
+							alert("아이디를 입력해주세요.");
+							return;
+						}
+						
+						if(!isChecked){
+							alert("아이디 중복체크를 진행 해 주세요");
+							return;
+						}
+						
+						if(isDuplicateId){
+							alert("아이디 중복되었습니다.");
+							return;
+						}
+						
+						if(password == ""){
+							alert("비밀번호를 입력하세요.");
+							return;
+						}
+						
+						if(passwordCheck == ""){
+							alert("패스워드 확인을 입력하세요.");
+							return;
+						}
+						
+						if(password != passwordCheck){
+							alert("패스워드 일치하지 않습니다.");
+							return;
+						}
+						
+						if(name == ""){
+							alert("이름을 입력하세요.");
+							return;
+						}
+						
+						if(email == ""){
+							alert("이메일을 입력하세요.");
+							return;
+						}
+						
+						if(number == ""){
+							alert("숫자를 입력하세요.");
+							return;
+						}
+						
+						$.ajax({
+							type:"post"
+							, url:"/user/signup"
+							, data:{"loginId":loginId, "password":password, "passwordCheck":passwordCheck, "name":name, "email":email, "checkNumber":number}
+							, success:function(data){
+								if(data.result == "success"){
+									// 로그인 페이지 만들면 location을 통해 url 쓰기
+									alert("회원가입 성공");
+								}else{
+									alert("회원가입 실패");
+								}
+							}
+							, error:function(){
+								alert("회원가입 에러");
+							}
+							
+						});
+						
+					});
+				
+				});
+			
+			
+			
+			</script>
 
 </body>
 </html>

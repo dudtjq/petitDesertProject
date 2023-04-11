@@ -9,7 +9,6 @@
 				전화번호 : 010-0000-0000 <br>
 				대표자 : OOO <br>
 				사업자등록번호 : 100-11-10100 <br>
-				통신판매 등록 : 제 0000 경기남양주 01300호 <br>
 				<br>
 				Copyright 2023. petitdessert  All Rights Reserved.
 			
