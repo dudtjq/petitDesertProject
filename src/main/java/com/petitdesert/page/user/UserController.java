@@ -29,15 +29,14 @@ public class UserController {
 		
 	// 로그아웃 기능 (RestController 가 아닌 Controller에서)
 	@GetMapping("/signout")
-	public String signout(HttpServletRequest request) {
-		
-		HttpSession session = request.getSession();
+	public String signout(HttpSession session) {
 		
 		// 로그아웃 기능 리무브 활용
 		session.removeAttribute("userId");
 		session.removeAttribute("userLoginId");
+	
 		// 리다이렉트 리턴 
-		return "redirect:/signin/view";
+		return "redirect:/user/main/view";
 	
 	}
 	

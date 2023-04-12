@@ -33,6 +33,14 @@
 							<br>
 							<div class="text-center"><b>정보 입력란</b></div>
 						
+							<div class="mt-3 d-flex">
+								<select id="choiceBox" class="form-control col-5">
+								 	<option value='--선택--'>--선택--</option>
+								 	<option value='1'>관리자</option>
+	  								<option value='0'>일반회원</option>
+								</select>
+							</div>
+						
 							<div class="d-flex  mt-3">
 								<input type="text" id="loginIdInput" class="form-control" placeholder="아이디">
 								<button type="button" class="btn btn-warning text-white font-weight-bold btn-sm ml-2" id="duplicationBtn">중복확인</button>
@@ -46,16 +54,9 @@
 							
 							<input type="text" id="nameInput" class="form-control mt-3" placeholder="이름">
 							<input type="text" id="emailInput" class="form-control mt-3" placeholder="이메일">
-						<%-- 
-							<div class="mt-3">
-								<select id="choice" class="form-control col-3">
-								 	<option value='manager'>관리자</option>
-	  								<option value='member'>일반 회원</option>
-								</select>
-							</div>
-						--%>	
-							<input type="number" min="0" max="1" id="numberInput" class="form-control mt-3" placeholder="관리자는 1, 일반회원은 0을 작성해주세요.">
+						
 							
+											
 							<button type="button" id="signUpBtn" class="btn btn-warning text-white font-weight-bold btn-block mt-3">회원가입</button>
 					
 						</div>
@@ -66,7 +67,7 @@
 					</div>
 				</div>
 		</section>
-			</section>
+			
 			<hr>
 			
 				<c:import url="/WEB-INF/jsp/include/footer.jsp" />
@@ -78,6 +79,7 @@
 			
 				$(document).ready(function(){
 					
+		
 					// 처음엔 중복체크가 진행이 안된 상태
 					var isChecked = false;
 					// 중복이 맞으면 추가가 되지 못하게 true로 셋팅!
@@ -139,10 +141,16 @@
 						let passwordCheck = $("#passwordCheckInput").val();
 						let name = $("#nameInput").val();
 						let email = $("#emailInput").val();
-						let number =$("#numberInput").val();
+						let choice =$("#choiceBox").val();
 						
 						// 회원 가입 버튼 이벤트 적용 확인
 						// alert();
+						
+						if(choice == "--선택--"){
+							alert("선택사항을 고르세요.");
+							return;
+						}
+						
 						
 						if(loginId == ""){
 							alert("아이디를 입력해주세요.");
@@ -184,15 +192,14 @@
 							return;
 						}
 						
-						if(number == ""){
-							alert("숫자를 입력하세요.");
-							return;
-						}
+						
+						
+						
 						
 						$.ajax({
 							type:"post"
 							, url:"/user/signup"
-							, data:{"loginId":loginId, "password":password, "passwordCheck":passwordCheck, "name":name, "email":email, "checkNumber":number}
+							, data:{"loginId":loginId, "password":password, "passwordCheck":passwordCheck, "name":name, "email":email, "checkNumber":choice}
 							, success:function(data){
 								if(data.result == "success"){
 									// 로그인 페이지 만들면 location을 통해 url 쓰기
