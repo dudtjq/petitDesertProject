@@ -24,6 +24,7 @@ public class RestUserController {
 	@Autowired
 	private UserBO userBO;
 	
+	// 회원 가입
 	@PostMapping("/signup")
 	@ResponseBody
 	public Map<String, String> signup(
@@ -49,6 +50,7 @@ public class RestUserController {
 		
 	}
 	
+	// 로그인
 	@PostMapping("/signin")
 	@ResponseBody
 	public Map<String, String> signin(
@@ -59,11 +61,29 @@ public class RestUserController {
 		
 		User user = userBO.getUser(loginId, password);
 		
+		Map<String, String> resultMap = new HashMap<>();
+		
+		// 로그인 정보 저장
+		if(user != null) {
+			
+			resultMap.put("result", "success");
+			// 세션 객체 얻어 오기
+			session.setAttribute("userId", user.getId());
+			session.setAttribute("userLoginId", user.getLoginId());
+			
+		}else {
+			
+			resultMap.put("result", "fail");	
+			
+		}
+		
+		return resultMap;
+		
 		
 		
 	}
 	
-	
+	// 중복 확인
 	@GetMapping("/duplicate_id")
 	@ResponseBody
 	public Map<String, Boolean> isDuplicateLoginId(

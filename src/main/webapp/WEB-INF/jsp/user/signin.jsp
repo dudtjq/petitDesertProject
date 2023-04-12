@@ -33,14 +33,15 @@
 							<br>
 							<div class="text-center"><b>로그인</b></div>
 						
-							<div class="d-flex  mt-3">
-								<input type="text" id="loginIdInput" class="form-control" placeholder="아이디">
-							</div>
-						
-							<input type="password" id="passwordInput" class="form-control mt-3" placeholder="패스워드">
+							<form id="loginForm">						
+								<div class="d-flex  mt-3">
+									<input type="text" id="loginIdInput" class="form-control" placeholder="아이디">
+								</div>
 							
-							<button type="button" id="signInBtn" class="btn btn-warning text-white font-weight-bold btn-block mt-3">로그인</button>
-					
+								<input type="password" id="passwordInput" class="form-control mt-3" placeholder="패스워드">
+								
+								<button type="button" id="signInBtn" class="btn btn-warning text-white font-weight-bold btn-block mt-3">로그인</button>
+							</form>
 						</div>
 						
 					</div>
@@ -49,13 +50,66 @@
 					</div>
 				</div>
 		</section>
-			</section>
-			<hr>
+		<hr>
 			
 				<c:import url="/WEB-INF/jsp/include/footer.jsp" />
 			
 			
-			</div>
+		</div>
+		<script>
+		
+			$(document).ready(function(){
+				
+				$("#loginForm").on("submit", function(e){
+					
+					e.preventDefault();
+					
+					let loginId = $("#loginIdInput").val();
+					let password = $("#passwordInput").val();
+					
+					if(loginId == ""){
+						alert("아이디를 입력하세요.");
+					}
+					
+					if(password == ""){
+						alert("비밀번호를 입력하세요.");
+					}
+					
+					$.ajax({
+						
+						type:"post"
+						, url:"/user/signin"
+						, data:{"loginId":loginId, "password":password}
+						, success:function(data){
+							
+							if(data.result == "success"){
+								
+								location.href="/user/main/view";
+					 			return;
+								
+							}else{
+								
+								alert("아이디와 비밀번호를 확인 해주세요.");
+				 				return;
+								
+							}
+						}
+						, error:function(){
+							
+							alert("로그인 에러");
+				 			return;
+							
+						}
+						
+						
+					});
+					
+				});
+				
+			});
+		
+		</script>
+			
 
 </body>
 </html>
