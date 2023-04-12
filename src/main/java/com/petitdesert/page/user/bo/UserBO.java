@@ -22,8 +22,9 @@ public class UserBO {
 			, int checkNumber
 			) {
 		
+		// 비밀번호 암호화
 		String encryptPassword = EncryptService.md5(password);
-		
+
 		return userDAO.insertUser(loginId, encryptPassword, passwordCheck, name, email, checkNumber);
 		
 	}

@@ -33,14 +33,14 @@
 							<br>
 							<div class="text-center"><b>로그인</b></div>
 						
-							<form id="loginForm">						
+							<form id="loginForm">					
 								<div class="d-flex  mt-3">
 									<input type="text" id="loginIdInput" class="form-control" placeholder="아이디">
 								</div>
 							
 								<input type="password" id="passwordInput" class="form-control mt-3" placeholder="패스워드">
 								
-								<button type="button" id="signInBtn" class="btn btn-warning text-white font-weight-bold btn-block mt-3">로그인</button>
+								<button type="submit" id="signInBtn" class="btn btn-warning text-white font-weight-bold btn-block mt-3">로그인</button>
 							</form>
 						</div>
 						
@@ -62,6 +62,7 @@
 				
 				$("#loginForm").on("submit", function(e){
 					
+					// 이벤트가 가진 고유 기능과 속성을 취소한다.
 					e.preventDefault();
 					
 					let loginId = $("#loginIdInput").val();
@@ -69,10 +70,12 @@
 					
 					if(loginId == ""){
 						alert("아이디를 입력하세요.");
+						return;
 					}
 					
 					if(password == ""){
 						alert("비밀번호를 입력하세요.");
+						return;
 					}
 					
 					$.ajax({
