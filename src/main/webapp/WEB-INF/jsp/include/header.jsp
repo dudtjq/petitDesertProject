@@ -9,7 +9,7 @@
 					<div>${userLoginId}님<a href="/user/signout">로그아웃</a></div>
 				</c:if>
 				<c:if test="${empty userId }">
-					<div><a href="/user/signin/view">로그인</a><a href="/user/signup/view">회원가입</a></div>
+					<div><a class="text-dark pr-2" href="/user/signin/view">로그인</a><a class="text-dark" href="/user/signup/view">회원가입</a></div>
 				</c:if>
 			</div>	
 		</header>
