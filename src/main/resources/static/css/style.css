@@ -59,40 +59,56 @@
 	margin:auto;
 }
 
-.upInput{
-	width:800px;
-	height:300px;
+.addInput{
+	width:1000px;
 	margin:auto;
+	
+}
+
+.add{
+	width:400px;
+	margin:auto;
+	}
+
+.uploadIcon{
+	font-size:30px;
+	
+}
+
+.uploadBtn{
+	height:40px;
+
 	
 }
 
 .menu1{
 	width:800px;
-	height:300px;
+	height:350px;
 	margin:auto;
 }
 
 .menu2{
 	width:800px;
-	height:300px;
+	height:350px;
 	margin:auto;
 }
 
 .menu3{
 	width:800px;
-	height:300px;
+	height:350px;
 	margin:auto;
 }
 
 .menu4{
 	width:800px;
-	height:300px;
+	height:350px;
 	margin:auto;
 }
 
 .menu5{
 	width:300px;
-	height:300px;
+	height:350px;
+	
 }
 
 .footer{

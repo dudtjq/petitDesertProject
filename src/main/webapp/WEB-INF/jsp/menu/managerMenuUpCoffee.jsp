@@ -8,12 +8,13 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 메뉴 커피</title>
-
 	  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
   		<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  		
+  		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
   		
   		<link rel="stylesheet" href="/static/css/style.css" type="text/css">
 
@@ -25,6 +26,8 @@
 		<c:import url="/WEB-INF/jsp/include/header.jsp" />
 		
 		<c:import url="/WEB-INF/jsp/include/nav.jsp" />
+		
+	
 		
 		<div class="text-center">
 				<h3 class="font-weight-bold">메뉴</h3>
@@ -46,22 +49,34 @@
 		
 		</div>	
 		
-		<div class="upInput bg-danger pt-3"></div>
+		<div class="addInput pt-3 d-block justify-content-center">
+			
+			<div id="menuNameInput" class="d-flex justify-content-center pt-2"><input type="text" class="form-control col-4" placeholder="메뉴명"></div>
+			<div id="priceInput" class="d-flex justify-content-center pt-2"><input type="text" class="form-control col-4" placeholder="가격"></div>
+			<div id="introduceInput" class="d-flex justify-content-center pt-2"><input type="text" class="form-control col-4" placeholder="소개"></div>
+			<div id="categoryInput" class="d-flex justify-content-center pt-2"><input type="text" class="form-control col-4" placeholder="카테고리"></div>
+			
+			<div class="add d-flex justify-content-between pt-2">
+				<div class="d-flex uploadIcon pl-4 pb-4" id="imageUploadBtn"><i class="bi bi-card-image"></i></div>
+				<input type="file" id="fileInput" class="pl-2 d-none" id="fileInput">
+				<button type="button" class="uploadBtn btn btn-warning text-white font-weight-bold pt-2" id="uploadBtn">등록</button>
+				
+			</div>
+		</div>
 		
 		
-		<div class="text-center pt-4">
+		<div class="text-center pt-3 pb-1">
 			<div><h3 class="font-weight-bold">Coffee</h3></div>
 			<div class="font-weight-bold">Petit Desert만의 프리미엄 커피</div>
 		</div>
 		
 		
-		<div class="addBtn pl-2 pb-2 pt-5">
-			<a type="button" class="btn btn-warning text-white font-weight-bold" href="#">등록하기</a>
-		</div>
 		
-		<div class="d-block justify-content-center">
+		
+		<div class="d-block justify-content-center pt-5">
 			<div class="menu1 d-flex text-center">
-				<div class="menu5 pl-2">
+				<div class="menu5 pl-2 pb-3">
+					<div class="font-weight-bold d-none">커피</div><!-- 안보이게 할 예정  -->
 					<img alt="에스프레소 사진" width="200" height="200" src="https://i0.wp.com/baristanews.co.kr/wp-content/uploads/2017/07/Locomotive-Espresso-6-696x464.jpg?fit=696%2C464&ssl=1">
 					<div class="font-weight-bold">에스프레소</div>
 					<div class="font-weight-bold">2,000</div>
@@ -173,12 +188,87 @@
 		
 		
 		
+		
 		<hr>
 	
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
 		
 	</div>
 
+	<script>
+		$(document).ready(function(){
+			
+			$("#imageUploadBtn").on("click", function(){
+	 			// file input을 클릭한 동작을 수행한다.
+	 			$("#fileInput").click();
+	 			
+	 		});
+			
+			$("#uploadBtn").on("click", function(){
+				
+				let menuName = $("#menuNameInput").val();
+				let price = $("#priceInput").val();
+				let introduce = $("#introduceInput").val();
+				let file = $("#fileInput")[0];
+				let category = $("#categoryInput").val();
+				
+				if(menuName == ""){
+					alert("메뉴이름을 입력하세요.");
+				}
+				
+				if(price == ""){
+					alert("가격을 입력하세요.");
+				}
+				
+				if(introduce == ""){
+					alert("메뉴소개를 입력하세요.");
+				}
+				
+				if(file.files.length == 0){
+	 				alert("파일을 선택하세요.");
+	 				return;
+	 			}
+				
+				if(category == ""){
+					alert("카테고리를 입력하세요.");
+				}
+				
+				var formData = new FormData();
+	 			formData.append("menuName", menuName);
+	 			formData.append("price", price);
+	 			formData.append("introduce", introduce);	
+	 			formData.append("category", category);
+	 			formData.append("file", file.files[0]);
+				
+	 			console.log(file.files);
+	 			
+	 			$.ajax({
+	 				type:"post"
+	 				, url:"/menu/menu_name"
+	 				, data:formData
+	 				, enctype:"multipart/form-data"   // 파일 업로드 필수 항목
+					, processData:false // 파일 업로드 필수 항목
+					, menuNameType:false// 파일 업로드 필수 항목
+					, priceType:false// 파일 업로드 필수 항목
+					, introduceType:false// 파일 업로드 필수 항목
+					, categoryType:false// 파일 업로드 필수 항목
+	 				, success:function(data){
+	 					if(data.result == "success"){
+	 						location.reload();
+	 					}else{
+	 						alert("업로드 실패");
+	 					}
+	 				}
+	 				, error:function(){
+	 					alert("업로드 에러");
+	 				}
+	 					
+	 			});
+				
+			});
+			
+		});
+	</script>
 	
 
 
