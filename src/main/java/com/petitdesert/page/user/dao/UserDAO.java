@@ -23,6 +23,7 @@ public interface UserDAO {
 			@Param("loginId") String loginId
 			, @Param("password") String password
 			);
+	
 		
 
 

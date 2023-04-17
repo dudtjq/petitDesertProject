@@ -25,11 +25,11 @@ public class RestMenuController {
 	@PostMapping("/menu_name")
 	@ResponseBody
 	public Map<String, String> menuUp(
-			@RequestParam("menuName") String menuName
-			, @RequestParam("price") int price
-			, @RequestParam("introduce") String introduce
+			@RequestParam(value="menuName", required=false) String menuName
+			, @RequestParam(value="price", required=false) String price
+			, @RequestParam(value="introduce", required=false) String introduce
 			, @RequestParam("file") MultipartFile file
-			, @RequestParam("category") String category
+			, @RequestParam(value="category", required=false) String category
 			, HttpSession session	
 			){
 		

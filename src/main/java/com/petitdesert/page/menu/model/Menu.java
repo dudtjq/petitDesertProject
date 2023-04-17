@@ -7,7 +7,7 @@ public class Menu {
 	private int id;
 	private int userId;
 	private String menuName;
-	private int price;
+	private String price;
 	private String introduce;
 	private String imagePath;
 	private String category ;
@@ -32,10 +32,10 @@ public class Menu {
 	public void setMenuName(String menuName) {
 		this.menuName = menuName;
 	}
-	public int getPrice() {
+	public String getPrice() {
 		return price;
 	}
-	public void setPrice(int price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 	public String getIntroduce() {
@@ -68,5 +68,7 @@ public class Menu {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+	
+
 
 }

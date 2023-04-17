@@ -32,6 +32,29 @@
 			)
    		
    		</insert>
+   		
+   		<select id="selectMenuList" resultType="com.petitdesert.page.menu.model.Menu"
+  	    parameterType="map">
+  	
+  		SELECT
+  			`id`
+  			, `userId`
+  			, `menuName`
+  			, `price`
+  			, `introduce`
+  		 	, `imagePath`
+  		 	, `category`
+  		 	, `createdAt`
+  		 	, `updatedAt`
+  		FROM
+  		
+  			`menu`
+ 	
+ 		ORDER BY 
+  		
+			`id` DESC;
+ 
+  	</select>
    
    
    
