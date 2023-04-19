@@ -1,6 +1,6 @@
 package com.petitdesert.page.menu.bo;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,28 +35,27 @@ public class MenuBO {
 	
 	public List<Menu> getMenuList(int userId){
 
-		List<Menu> menuList = menuDAO.selectMenuList();
+ 	return menuDAO.selectMenuList(userId);
+	
+	}
+	
+	public int deleteMenu(int userId, int menuId) {
 		
-		List<Menu> essentialMenu = new ArrayList<>();
+		Menu menu = menuDAO.selectMenuByUserId(userId ,menuId);
 		
-		for(Menu menu:menuList) {
+		if(menu != null) {
+			// 이미지 파일
+			FileManagerService.removeFile(menu.getImagePath());
 			
-			Menu addMenu = new Menu();
+			return menuDAO.deleteMenu(menuId);
 			
-			addMenu.setId(menu.getId());
-			addMenu.setUserId(menu.getUserId());
-			addMenu.setMenuName(menu.getMenuName());
-			addMenu.setPrice(menu.getPrice());
-			addMenu.setIntroduce(menu.getIntroduce());
-			addMenu.setImagePath(menu.getImagePath());
-			addMenu.setCategory(menu.getCategory());
-			
-			essentialMenu.add(addMenu);
-			
+		}else {
+			return 0;
 		}
-		
-		return essentialMenu;
+	
 		
 	}
+	
+	
 
 }

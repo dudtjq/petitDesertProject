@@ -81,35 +81,18 @@
 	
 }
 
-.menu1{
-	width:800px;
+.menu{
+	width:300px;
 	height:350px;
-	margin:auto;
+	margin: auto;
 }
 
 .menu2{
-	width:800px;
-	height:350px;
-	margin:auto;
+    width: 200px;
+    margin: 5px;
 }
 
-.menu3{
-	width:800px;
-	height:350px;
-	margin:auto;
-}
 
-.menu4{
-	width:800px;
-	height:350px;
-	margin:auto;
-}
-
-.menu5{
-	width:300px;
-	height:350px;
-	
-}
 
 .footer{
 	height:200px;

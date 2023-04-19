@@ -77,43 +77,25 @@
 		
 		
 		
-		<c:forEach var="menu" items="${menuList}">
-		<div class="d-block justify-content-center pt-5">
-			<div class="menu1 d-flex text-center">
-				<div class="menu5 pl-2 pb-3">
-					<div class="font-weight-bold d-none">커피</div><!-- 안보이게 할 예정  -->
-					<img alt="${menu.menuName} 사진" width="200" height="200" src="${menu.imagePath}">
-					<div class="font-weight-bold">${menu.menuName}</div>
-					<div class="font-weight-bold">${menu.price}</div>
-					<div class="font-weight-bold small">${menu.introduce}</div>
-				</div>
-				<div class="menu5 pl-2 pb-3">
-					<div class="font-weight-bold d-none">커피</div><!-- 안보이게 할 예정  -->
-					<img alt="${menu.menuName} 사진" width="200" height="200" src="${menu.imagePath }">
-					<div class="font-weight-bold">${menu.menuName}</div>
-					<div class="font-weight-bold">${menu.price}</div>
-					<div class="font-weight-bold small">${menu.introduce}</div>
-				</div>
+		
+		<div class="d-flex justify-content-center pt-5 d-flex flex-wrap row">
+		
+			<c:forEach var="menu" items="${menuList}">
+			<div class="menu text-center d-flex">
 				
-				<div class="menu5 pl-2 pb-3">
-					<div class="font-weight-bold d-none">커피</div><!-- 안보이게 할 예정  -->
-					<img alt="${menu.menuName} 사진" width="200" height="200" src="${menu.imagePath }">
-					<div class="font-weight-bold">${menu.menuName}</div>
-					<div class="font-weight-bold">${menu.price}</div>
-					<div class="font-weight-bold small">${menu.introduce}</div>
+				<div class="menu2 pl-2 pb-3">
+					<div class="menu2 font-weight-bold d-none">커피</div><!-- 안보이게 할 예정  -->
+					<img class="menu2" alt="${menu.menuName} 사진" width="200" height="200" src="${menu.imagePath}">
+					<div class="font-weight-bold menu2">${menu.menuName}</div>
+					<div class="font-weight-bold menu2">${menu.price}</div>
+					<div class="font-weight-bold small menu2">${menu.introduce}</div>
+					<button type="button" class="deleteBtn1 btn-sm bg-danger text-white border-0" data-menu-id="${menu.id}" data-toggle="modal" data-target="#moreModal">삭제</button>
 				</div>
-				
-				<div class="menu5 pl-2 pb-3">
-					<div class="font-weight-bold d-none">커피</div><!-- 안보이게 할 예정  -->
-					<img alt="${menu.menuName} 사진" width="200" height="200" src="${menu.imagePath }">
-					<div class="font-weight-bold">${menu.menuName}</div>
-					<div class="font-weight-bold">${menu.price}</div>
-					<div class="font-weight-bold small">${menu.introduce}</div>
-				</div>
-				
-			</div>
+					
 			</div>
 			</c:forEach>
+		</div>
+		
 		
 		
 		<hr>
@@ -121,9 +103,77 @@
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
 		
 	</div>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="moreModal" tabindex="-1" role="dialog" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="modal-content">
+	      <div class="modal-body text-center">
+	      	<div class="modal-header">
+        		<h5 class="modal-title" id="exampleModalLabel">Petit Desert</h5>
+      		</div>
+		    <div class="modal-body">
+		       삭제 하시겠습니까?
+		    </div>
+		    <div class="modal-footer">
+		       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="cancelBtn">취소</button>
+		       <button type="button" class="btn btn-primary" id="deleteBtn2">삭제</button>
+		    </div>
+	  	 </div>
+	    
+	    </div>
+	  </div>
+	</div>
 
 	<script>
 		$(document).ready(function(){
+			
+			// 삭제
+			$("#deleteBtn2").on("click", function(){
+				
+				let menuId = $(this).data("menu-id");
+				
+				$.ajax({
+					
+						type:"get"
+						, url:"/menu/menu_name/delete"
+						, data:{"menuId":menuId}
+						, success:function(data){
+							
+							if(data.result =="success"){
+								location.reload();
+							}else{
+								alert("삭제 실패")
+							}
+							
+						}
+						, error:function(){
+							
+							alert("삭제 오류")
+							
+						}
+					
+				});
+				
+			});
+			
+			// 취소 시 그대로
+			$("#cancelBtn").on("click", function(){
+				
+				let menuId = $(this).data("menu-id");
+				location.reload();
+				
+			});
+			
+			// 요 버튼을 누르게 되면 모달 화면이 보이게 하게끔 연결
+			$(".deleteBtn1").on("click", function(){
+	 			
+	 			let menuId = $(this).data("menu-id")
+	 		
+	 			// data-menu-id ="menuId"
+	 			$("#deleteBtn2").data("menu-id", menuId);
+	 			
+			});
 			
 			$("#imageUploadBtn").on("click", function(){
 	 			// file input을 클릭한 동작을 수행한다.

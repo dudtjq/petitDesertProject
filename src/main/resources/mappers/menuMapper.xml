@@ -55,6 +55,36 @@
 			`id` DESC;
  
   	</select>
+  	
+  	<select id="selectMenuByUserId" resultType="com.petitdesert.page.menu.model.Menu"
+  	parameterType="map">
+  	
+  		SELECT
+  			`id`
+  			, `userId`
+  			, `menuName`
+  			, `price`
+  			, `introduce`
+  		 	, `imagePath`
+  		 	, `category`
+  		 	, `createdAt`
+  		 	, `updatedAt`
+  		FROM
+  			`menu`
+ 		WHERE
+			`id` = #{id}
+			AND `userId` = #{userId}
+ 
+  	</select>
+  	
+  	<delete id="deleteMenu" parameterType="int">
+  	
+  		DELETE FROM
+			`menu`
+		WHERE
+			`id` = #{id}
+  	
+  	</delete>
    
    
    
