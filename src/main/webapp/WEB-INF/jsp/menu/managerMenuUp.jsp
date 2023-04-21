@@ -23,29 +23,25 @@
 <body>
 
 
-
 	<div id="wrap">
 		
 		<c:import url="/WEB-INF/jsp/include/header.jsp" />
 		
-		<c:import url="/WEB-INF/jsp/include/nav.jsp" />
-		
-	
-		
-		<div class="text-center">
+
+		<div class="text-center pt-4 pb-2">
 				<h3 class="font-weight-bold">메뉴</h3>
 				<h3 class="font-weight-bold">MENU</h3>
 		</div>
 		
 		<div>
 		
-			<nav class="nav d-flex justify-content-center align-items-center border border-warning border-4">
+			<nav class="nav d-flex justify-content-center align-items-center border border-warning border-4 pt-1">
 			
 				<ul class="nav nav-fill">
-					<li class="nav-item"><a class="nav-link text-dark font-weight-bold" href="/menu/menu_name_coffee/view">음료</a>
-					<li class="nav-item"><a class="nav-link text-dark font-weight-bold" href="/menu/menu_name_bakery/view">베이커리</a>
-					<li class="nav-item"><a class="nav-link text-dark font-weight-bold" href="/menu/menu_name_desert/view">디저트</a>
-					<li class="nav-item"><a class="nav-link text-dark font-weight-bold" href="/menu/menu_name_sandwich/view">샌드위치</a>
+					<li class="nav-item"><a class="nav-link text-dark font-weight-bold" href="/menu/menu_name_up/view?category=음료">음료</a>
+					<li class="nav-item"><a class="nav-link text-dark font-weight-bold" href="/menu/menu_name_up/view?category=베이커리">베이커리</a>
+					<li class="nav-item"><a class="nav-link text-dark font-weight-bold" href="/menu/menu_name_up/view?category=디저트">디저트</a>
+					<li class="nav-item"><a class="nav-link text-dark font-weight-bold" href="/menu/menu_name_up/view?category=샌드위치">샌드위치</a>
 				</ul>
 					
 			</nav>
@@ -70,7 +66,7 @@
 		
 		
 		<div class="text-center pt-3 pb-1">
-			<div><h3 class="font-weight-bold">Coffee</h3></div>
+			<div><h3 class="font-weight-bold">${menuList.category}</h3></div>
 			<div class="font-weight-bold">Petit Desert만의 프리미엄 커피</div>
 		</div>
 		

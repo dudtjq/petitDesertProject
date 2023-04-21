@@ -33,11 +33,15 @@ public class MenuBO {
 		
 	}
 	
-	public List<Menu> getMenuList(int userId){
+	public List<Menu> getMenuList(
+			int userId
+			, String category){
 
- 	return menuDAO.selectMenuList(userId);
+ 	return menuDAO.selectMenuList(userId, category);
 	
 	}
+	
+	
 	
 	public int deleteMenu(int userId, int menuId) {
 		
