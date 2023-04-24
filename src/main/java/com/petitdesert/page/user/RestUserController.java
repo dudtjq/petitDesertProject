@@ -70,6 +70,7 @@ public class RestUserController {
 			// 세션 객체 얻어 오기
 			session.setAttribute("userId", user.getId());
 			session.setAttribute("userLoginId", user.getLoginId());
+			session.setAttribute("checkNumber", user.getCheckNumber());
 			
 		}else {
 			

@@ -24,6 +24,7 @@ public interface UserDAO {
 			, @Param("password") String password
 			);
 	
+	public User selectUserCheckNumber(@Param("checkNumber") int checkNumber);
 		
 
 

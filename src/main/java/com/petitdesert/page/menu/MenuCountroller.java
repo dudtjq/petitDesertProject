@@ -21,27 +21,17 @@ public class MenuCountroller {
 	@Autowired
 	private MenuBO menuBO;
 	
-	@GetMapping("/menu_name_coffee/view")
-	public String managerMenuCoffee() {
-		
-		return "menu/managerMenuCoffee";
-		
-		
-	}
-	
-	
-	
+
 	// 관리자가 메뉴를 등록(input) 하는 페이지
 	@GetMapping("/menu_name_up/view")
 	public String managerMenuUpCoffee(
-			@RequestParam(value="음료", required=false) String category
+			@RequestParam(value="category", required=false) String category
 			, Model model
 			, HttpSession session
 			) {
 		
-		int userId = (Integer)session.getAttribute("userId");
 		
-		List<Menu> menuList = menuBO.getMenuList(userId, category);
+		List<Menu> menuList = menuBO.getMenuList(category);
 			
 		model.addAttribute("menuList", menuList);
 		

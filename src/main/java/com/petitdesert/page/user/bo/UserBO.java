@@ -51,6 +51,12 @@ public class UserBO {
 		
 	}
 	
+	public User getCheckNumber(int checkNumber) {
+		
+		return userDAO.selectUserCheckNumber(checkNumber);
+		
+	}
+	
 	
 	
 }

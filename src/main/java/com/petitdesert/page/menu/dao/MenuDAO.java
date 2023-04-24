@@ -19,9 +19,7 @@ public interface MenuDAO {
 			, @Param("category") String category
 			);
 	
-	public List<Menu> selectMenuList(
-			@Param("userId") int userId
-			, @Param("category") String category);
+	public List<Menu> selectMenuList(@Param("category") String category);
 	
 	public Menu selectMenuByUserId(
 			@Param("userId") int userId

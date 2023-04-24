@@ -38,7 +38,8 @@
 			<nav class="nav d-flex justify-content-center align-items-center border border-warning border-4 pt-1">
 			
 				<ul class="nav nav-fill">
-					<li class="nav-item"><a class="nav-link text-dark font-weight-bold" href="/menu/menu_name_up/view?category=음료">음료</a>
+					
+					<li class="nav-item"><a class="nav-link text-dark font-weight-bold" href="/menu/menu_name_up/view?category=음료">음료</a></li>
 					<li class="nav-item"><a class="nav-link text-dark font-weight-bold" href="/menu/menu_name_up/view?category=베이커리">베이커리</a>
 					<li class="nav-item"><a class="nav-link text-dark font-weight-bold" href="/menu/menu_name_up/view?category=디저트">디저트</a>
 					<li class="nav-item"><a class="nav-link text-dark font-weight-bold" href="/menu/menu_name_up/view?category=샌드위치">샌드위치</a>
@@ -48,22 +49,23 @@
 		
 		</div>	
 		
-		<div class="addInput pt-3 d-block justify-content-center">
-			
-			<div class="d-flex justify-content-center pt-2"><input id="menuNameInput" type="text" class="form-control col-4" placeholder="메뉴명"></div>
-			<div class="d-flex justify-content-center pt-2"><input id="priceInput" type="text" class="form-control col-4" placeholder="가격"></div>
-			<div class="d-flex justify-content-center pt-2"><input id="introduceInput" type="text" class="form-control col-4" placeholder="소개"></div>
-			<div class="d-flex justify-content-center pt-2"><input id="categoryInput"type="text" class="form-control col-4" placeholder="카테고리"></div>
-			
-			<div class="add d-flex justify-content-between pt-2">
-				<div class="d-flex uploadIcon pl-4 pb-4" id="imageUploadBtn"><i class="bi bi-card-image"></i></div>
-				<input type="file" id="fileInput" class="pl-2 d-none">
-				<div class="pr-4">
-					<button type="button" class="uploadBtn btn btn-warning text-white font-weight-bold pt-2 " id="upBtn">등록</button>
+		<c:if test="${checkNumber == 1}">
+			<div class="addInput pt-3 d-block justify-content-center">
+				
+				<div class="d-flex justify-content-center pt-2"><input id="menuNameInput" type="text" class="form-control col-4" placeholder="메뉴명"></div>
+				<div class="d-flex justify-content-center pt-2"><input id="priceInput" type="text" class="form-control col-4" placeholder="가격"></div>
+				<div class="d-flex justify-content-center pt-2"><input id="introduceInput" type="text" class="form-control col-4" placeholder="소개"></div>
+				<div class="d-flex justify-content-center pt-2"><input id="categoryInput"type="text" class="form-control col-4" placeholder="카테고리"></div>
+				
+				<div class="add d-flex justify-content-between pt-2">
+					<div class="d-flex uploadIcon pl-4 pb-4" id="imageUploadBtn"><i class="bi bi-card-image"></i></div>
+					<input type="file" id="fileInput" class="pl-2 d-none">
+					<div class="pr-4">
+						<button type="button" class="uploadBtn btn btn-warning text-white font-weight-bold pt-2 " id="upBtn">등록</button>
+					</div>
 				</div>
 			</div>
-		</div>
-		
+		</c:if>
 		
 		<div class="text-center pt-3 pb-1">
 			<div><h3 class="font-weight-bold">Coffee</h3></div>

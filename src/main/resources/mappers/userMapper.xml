@@ -62,6 +62,24 @@
   			`password` = #{password}
   	</select>
   
+  	<select id="selectUserCheckNumber" parameterType="map"
+  	resultType="com.petitdesert.page.user.model.User">
+  		SELECT
+  			`id`
+  			, `loginId`
+  			, `password`
+  		 	, `name`
+  		 	, `email`
+  		 	, `checkNumber`
+  		 	, `createdAt`
+  		 	, `updatedAt`
+  		FROM
+  			`user`
+  		WHERE
+  		 	`checkNumber` = #{checkNumber}		 	
+  		
+  	</select>
+  
   
   
   </mapper>

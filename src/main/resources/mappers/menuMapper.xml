@@ -49,14 +49,10 @@
   		FROM
   		
   			`menu`
-  			
-  		WHERE 
+  	
+ 		WHERE 
   		
-  			`category` = #{category}
- 	
- 		ORDER BY 
-  		
-			`id` DESC;
+			`category` = #{category}
  
   	</select>
   	
