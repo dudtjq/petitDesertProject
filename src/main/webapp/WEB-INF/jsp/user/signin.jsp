@@ -23,8 +23,6 @@
 			
 			<c:import url="/WEB-INF/jsp/include/header.jsp" />
 				
-			<c:import url="/WEB-INF/jsp/include/nav.jsp" />
-				
 			<section class="section justify-content-center">
 					<div>
 						<div class="login-box d-flex">

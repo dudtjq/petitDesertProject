@@ -21,8 +21,6 @@
 	
 		<c:import url="/WEB-INF/jsp/include/header.jsp" />
 		
-		<c:import url="/WEB-INF/jsp/include/nav.jsp" />
-		
 		<section class="section justify-content-center">
 			<div class="pt-3">
 				<div class="d-flex justify-content-start pl-5">

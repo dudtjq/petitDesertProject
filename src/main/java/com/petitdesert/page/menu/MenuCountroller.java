@@ -34,7 +34,7 @@ public class MenuCountroller {
 	// 관리자가 메뉴를 등록(input) 하는 페이지
 	@GetMapping("/menu_name_up/view")
 	public String managerMenuUpCoffee(
-			@RequestParam("category") String category
+			@RequestParam(value="음료", required=false) String category
 			, Model model
 			, HttpSession session
 			) {

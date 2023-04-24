@@ -10,7 +10,7 @@
 					<ul class="nav nav-fill">
 						<li class="nav-item"><a class="nav-link text-dark font-weight-bold" href="/menu/menu_name_up/view">메뉴</a>
 						<li class="nav-item"><a class="nav-link text-dark font-weight-bold" href="#">클래스</a>
-						<li class="nav-item"><a class="nav-link text-dark font-weight-bold" href="#">찾아 오시는 길</a>
+						<li class="nav-item"><a class="nav-link text-dark font-weight-bold" href="/map/map/view">찾아 오시는 길</a>
 						<c:if test="${not empty userId }">
 							<li class="nav-item"><a class="nav-link text-dark font-weight-bold" href="#">나의 정보</a>
 						</c:if>

@@ -49,6 +49,10 @@
   		FROM
   		
   			`menu`
+  			
+  		WHERE 
+  		
+  			`category` = #{category}
  	
  		ORDER BY 
   		
@@ -56,27 +60,7 @@
  
   	</select>
   	
-  		<select id="selectMenuList" resultType="com.petitdesert.page.menu.model.Menu"
-  	    parameterType="string">
-  	
-  		SELECT
-  			`id`
-  			, `userId`
-  			, `menuName`
-  			, `price`
-  			, `introduce`
-  		 	, `imagePath`
-  		 	, `category`
-  		 	, `createdAt`
-  		 	, `updatedAt`
-  		FROM
-  		
-  			`menu`
- 	
- 		WHERE 
-  			`category` = #{category}
- 
-  	</select>
+
   	
   	
   	

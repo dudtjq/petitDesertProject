@@ -66,7 +66,7 @@
 		
 		
 		<div class="text-center pt-3 pb-1">
-			<div><h3 class="font-weight-bold">${menuList.category}</h3></div>
+			<div><h3 class="font-weight-bold">Coffee</h3></div>
 			<div class="font-weight-bold">Petit Desert만의 프리미엄 커피</div>
 		</div>
 		
