@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+   <mapper namespace="com.petitdesert.page.class1.dao.ClassDAO">
+   		<insert id="insertClass" parameterType="map">
+   
+	  		    INSERT INTO 
+					`lesson`
+				(
+					`userId`
+					, `className`
+					, `introduce`
+					, `price`
+					, `imagePath`
+					, `category`
+					, `createdAt`
+					, `updatedAt`
+				)
+				VALUE 
+				(
+					#{userId}
+					, #{className}
+					, #{introduce}
+					, #{price}
+					, #{imagePath}
+					, #{category}
+					, now()
+					, now()
+				)
+			
+   		</insert>
+   		
+   		<select id="selectLessonList" resultType="com.petitdesert.page.class1.model.Lesson"
+  	    parameterType="map">
+  	
+  		SELECT
+  			`id`
+  			, `userId`
+  			, `className`
+  			, `introduce`
+  			, `price`
+  		 	, `imagePath`
+  		 	, `category`
+  		 	, `createdAt`
+  		 	, `updatedAt`
+  		FROM
+  		
+  			`lesson`
+  	
+ 		WHERE 
+  		
+			`category` = #{category}
+ 
+  	</select>
+  	
+  	 <select id="selectLessonByUserId" resultType="com.petitdesert.page.class1.model.Lesson"
+  	parameterType="map">
+  	
+  		SELECT
+  			`id`
+  			, `userId`
+  			, `className`
+  			, `introduce`
+  			, `price`
+  		 	, `imagePath`
+  		 	, `category`
+  		 	, `createdAt`
+  		 	, `updatedAt`
+  		FROM
+  			`lesson`
+ 		WHERE
+			`id` = #{id}
+			AND `userId` = #{userId}
+ 
+  	</select>
+  	
+  	<delete id="deleteLesson" parameterType="int">
+  	
+  		DELETE FROM
+			`lesson`
+		WHERE
+			`id` = #{id}
+  	
+  	</delete>
+   		
+   		
+   				
+   </mapper>

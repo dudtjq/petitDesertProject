@@ -67,22 +67,19 @@
 			</div>
 		</c:if>
 		
+		
+		
 		<div class="text-center pt-3 pb-1">
-			<div><h3 class="font-weight-bold">Coffee</h3></div>
-			<div class="font-weight-bold">Petit Desert만의 프리미엄 커피</div>
+			<div class="font-weight-bold"><h4>Petit Desert만의 신선하고 프리미엄한 메뉴</h4></div>
 		</div>
-		
-		
-		
-		
-		
+	
 		<div class="d-flex justify-content-center pt-5 d-flex flex-wrap row">
 		
 			<c:forEach var="menu" items="${menuList}">
 			<div class="menu text-center d-flex">
 				
 				<div class="menu2 pl-2 pb-3">
-					<div class="menu2 font-weight-bold d-none">커피</div><!-- 안보이게 할 예정  -->
+					<div class="menu2 font-weight-bold d-none">${menu.category}</div><!-- 안보이게 할 예정  -->
 					<img class="menu2" alt="${menu.menuName} 사진" width="200" height="200" src="${menu.imagePath}">
 					<div class="font-weight-bold menu2">${menu.menuName}</div>
 					<div class="font-weight-bold menu2">${menu.price}</div>
@@ -163,7 +160,7 @@
 				
 			});
 			
-			// 요 버튼을 누르게 되면 모달 화면이 보이게 하게끔 연결
+			// 버튼을 누르게 되면 모달 화면이 보이게 하게끔 연결
 			$(".deleteBtn1").on("click", function(){
 	 			
 	 			let menuId = $(this).data("menu-id")

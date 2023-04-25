@@ -25,52 +25,244 @@
 	
 		<c:import url="/WEB-INF/jsp/include/header.jsp" />
 		
+		<div class="d-flex justify-content-end pt-3">
+			<a type="button" class="listBtn btn text-white bg-warning" href="#">목록보기</a>
+		</div>
+		
 			<div class="text-center pt-4 pb-2">
 					<h4 class="font-weight-bold">클래스</h4>
 					<h1 class="font-weight-bold">Class</h1>
+					
+					
 			</div>
 			
-			<c:if test="${checkNumber == 1}">
+		<div>
+		
+			<nav class="nav d-flex justify-content-center align-items-center border border-warning border-4 pt-1">
+			
+				<ul class="nav nav-fill">
+					<li class="nav-item"><a class="nav-link text-dark font-weight-bold" href="/class/new_class/view?category=쁘띠갸또">쁘띠갸또</a></li>
+					<li class="nav-item"><a class="nav-link text-dark font-weight-bold" href="/class/new_class/view?category=구움과자">구움과자</a>
+					<li class="nav-item"><a class="nav-link text-dark font-weight-bold" href="/class/new_class/view?category=케이크">케이크</a>
+				</ul>
+					
+			</nav>
+		
+		</div>	
+			
+		
+			
+		<c:if test="${checkNumber == 1}">
 			<div class="addInput pt-3 d-block justify-content-center">
 				
-				<div class="d-flex justify-content-center pt-2"><input id="menuNameInput" type="text" class="form-control col-4" placeholder="클래스명"></div>
-				<div class="d-flex justify-content-center pt-2"><input id="priceInput" type="text" class="form-control col-4" placeholder="소개"></div>
-				<div class="d-flex justify-content-center pt-2"><input id="introduceInput" type="text" class="form-control col-4" placeholder="가격"></div>
-				
+				<div class="d-flex justify-content-center pt-2"><input id="classNameInput" type="text" class="form-control col-4" placeholder="클래스명"></div>
+				<div class="d-flex justify-content-center pt-2"><input id="introduceInput" type="text" class="form-control col-4" placeholder="소개"></div>
+				<div class="d-flex justify-content-center pt-2"><input id="priceInput" type="text" class="form-control col-4" placeholder="가격"></div>
+				<div class="d-flex justify-content-center pt-2"><input id="categoryInput" type="text" class="form-control col-4" placeholder="카테고리"></div>
 				
 				<div class="add d-flex justify-content-between pt-2">
 					<div class="d-flex uploadIcon pl-4 pb-4" id="imageUploadBtn"><i class="bi bi-card-image"></i></div>
 					<input type="file" id="fileInput" class="pl-2 d-none">
 					<div class="pr-4">
-						<button type="button" class="uploadBtn btn btn-warning text-white font-weight-bold pt-2 " id="upBtn">등록</button>
+					<button type="button" class="uploadBtn btn btn-warning text-white font-weight-bold pt-2 " id="upBtn">등록</button>
 					</div>
 				</div>
 			</div>
 		</c:if>
 		
+		
+
+		<div class="text-center pt-3 pb-1">
+			<div class="font-weight-bold"><h4>Petit Desert만의 품격, 프리미엄한 클래스</h4></div>
+		</div>
+			
+	
+		
 		<div class="d-flex justify-content-center pt-5 d-flex flex-wrap row">
-		
-			<div class="menu d-flex">
+			<c:forEach var="lesson" items="${LessonList}">
+				<div class="class d-flex">
 			
-				<div class="menu2 pl-2 pb-3">
-					<div class="menu2 font-weight-bold d-none">커피</div><!-- 안보이게 할 예정  -->
-					<img class="menu2" alt="사진" width="200" height="200" src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzAyMDNfMjk1%2FMDAxNjc1MzkzMTYyNTgx.L_4ySL6dJ75wzwRyJ2YOJg1RB8VVB94OCAW5tCkDf3Yg.RieIVDeZ3jtJsGdFfZMZ0a-u2xpxv4Hgbw-lY9preO0g.JPEG.appidbwls%2FIMG_2338.jpg&type=a340">
-					<div class="font-weight-bold menu2">마들렌</div>
-					<div class="font-weight-bold menu2">이쁘장한 마들렌을 어렵지않고 재미 있게 만들기</div>
-					<a type="button" class="priceBtn btn" href="#">120,000원</a>
-					<button type="button" class="deleteBtn1 btn-sm bg-danger text-white border-0" data-menu-id="${menu.id}" data-toggle="modal" data-target="#moreModal">삭제</button>
+					<div class="class2 pl-2 pb-3">
+						<div class="menu2 font-weight-bold d-none">${lesson.category}</div><!-- 안보이게 할 예정  -->
+						<img class="menu2" alt="${lesson.category}사진" width="200" height="200" src="${lesson.imagePath}">
+						<div class="font-weight-bold menu2">${lesson.className}</div>
+						<div class="font-weight-bold menu2">${lesson.introduce}</div>
+						<a type="button" class="priceBtn btn text-white" href="#">${lesson.price}</a>
+						<button type="button" class="deleteBtn1 btn-sm bg-danger text-white border-0" data-class-id="${lesson.id}" data-toggle="modal" data-target="#moreModal">삭제</button>
+						
+					</div>
+			
 				</div>
-			
-			</div>
-		
+			</c:forEach>	
 		</div>
 		
 		
-	
+		
 		<hr>
 	
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
 	</div>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="moreModal" tabindex="-1" role="dialog" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="modal-content">
+	      <div class="modal-body text-center">
+	      	<div class="modal-header">
+        		<h5 class="modal-title" id="exampleModalLabel">Petit Desert</h5>
+      		</div>
+		    <div class="modal-body">
+		       삭제 하시겠습니까?
+		    </div>
+		    <div class="modal-footer">
+		       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="cancelBtn">취소</button>
+		       <button type="button" class="btn btn-primary" id="deleteBtn2">삭제</button>
+		    </div>
+	  	 </div>
+	    
+	    </div>
+	  </div>
+	</div>
+	
+	<script>
+		$(document).ready(function(){
+			
+			
+			// 삭제
+			$("#deleteBtn2").on("click", function(){
+				
+				let lessonId = $(this).data("class-id");
+				
+				$.ajax({
+					
+						type:"get"
+						, url:"/class/class/delete"
+						, data:{"lessonId":lessonId}
+						, success:function(data){
+							
+							if(data.result =="success"){
+								location.reload();
+							}else{
+								alert("삭제 실패")
+							}
+							
+						}
+						, error:function(){
+							
+							alert("삭제 오류")
+							
+						}
+					
+				});
+				
+			});
+			
+			
+			// 취소 시 그대로
+			$("#cancelBtn").on("click", function(){
+				
+				let classId = $(this).data("class-id");
+				location.reload();
+				
+			});
+			
+			
+			// 버튼을 누르게 되면 모달 화면이 보이게 하게끔 연결
+			$(".deleteBtn1").on("click", function(){
+	 			
+	 			let classId = $(this).data("class-id")
+	 		
+	 			// data-class-id ="classId"
+	 			$("#deleteBtn2").data("class-id", classId);
+	 			
+			});
+			
+			
+			$("#imageUploadBtn").on("click", function(){
+	 			// file input을 클릭한 동작을 수행한다.
+	 			$("#fileInput").click();
+	 			
+	 		});
+			
+			$("#upBtn").on("click", function(){
+				
+				let className = $("#classNameInput").val();
+				let introduce = $("#introduceInput").val();
+				let price = $("#priceInput").val();
+				let file = $("#fileInput")[0];
+				let category = $("#categoryInput").val();
+				
+				if(className == ""){
+					alert("클래스 이름을 입력하세요.");
+					return;
+				}
+				
+				if(introduce == ""){
+					alert("클래스 소개를 입력하세요.");
+					return;
+				}
+				
+				if(price == ""){
+					alert("가격을 입력하세요.");
+					return;
+				}
+				
+				if(category == ""){
+					alert("카테고리를 입력하세요.");
+					return;
+				}
+				
+				if(file.files.length == 0){
+	 				alert("파일을 선택하세요.");
+	 				return;
+	 			}
+				
+				
+				
+				var formData = new FormData();
+	 			formData.append("className", className);
+	 			formData.append("introduce", introduce);
+	 			formData.append("price", price);	
+	 			formData.append("category", category);
+	 			formData.append("file", file.files[0]);
+				
+	 			console.log(file.files);
+	 			
+	 			$.ajax({
+	 				type:"post"
+	 				, url:"/class/class_up"
+	 				, data:formData
+	 				, enctype:"multipart/form-data"   // 파일 업로드 필수 항목
+					// ajax 파일 업로드시 processDate와 contentType을 필수로 넣어준다!!
+	 				, processData:false // 파일 업로드 필수 항목
+					, contentType:false
+					, classNameType:false// 파일 업로드 필수 항목
+					, introduceType:false// 파일 업로드 필수 항목
+					, priceType:false// 파일 업로드 필수 항목
+					, categoryType:false// 파일 업로드 필수 항목
+	 				, success:function(data){
+	 					if(data.result == "success"){
+	 						
+	 						location.reload();
+	 						
+	 					}else{
+	 						
+	 						alert("업로드 실패");
+	 						
+	 					}
+	 				}
+	 				, error:function(){
+	 					alert("업로드 에러");
+	 				}
+	 					
+	 			});
+				
+			});
+			
+			
+		});
+		
+	</script>	
 
 </body>
 </html>

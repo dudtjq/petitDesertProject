@@ -10,17 +10,12 @@ import org.springframework.web.multipart.MultipartFile;
 import com.petitdesert.page.common.FileManagerService;
 import com.petitdesert.page.menu.dao.MenuDAO;
 import com.petitdesert.page.menu.model.Menu;
-import com.petitdesert.page.user.bo.UserBO;
 
 @Service
 public class MenuBO {
 	
 	@Autowired
 	private MenuDAO menuDAO;
-	
-	@Autowired
-	private UserBO userBO;
-	
 	
 	public int addMenu(
 			int userId

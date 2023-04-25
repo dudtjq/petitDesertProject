@@ -87,10 +87,22 @@
 	
 }
 
+.class{
+	width:300px;
+	height:350px;
+	
+}
+
 .menu2{
     width: 200px;
     margin: 5px;
 }
+
+.class2{
+    width: 200px;
+    margin: 5px;
+}
+
 
 .introduce{
 	width:450px;
@@ -99,7 +111,7 @@
 }
 
 .priceBtn{
-	background-color:#FFD2691E;
+	background-color:#D2691E;
 }
 
 .footer{
