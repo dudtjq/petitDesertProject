@@ -82,14 +82,15 @@
 			<c:forEach var="lesson" items="${LessonList}">
 				<div class="class d-flex">
 			
-					<div class="class2 pl-2 pb-3">
+					<div class="class2 text-center pl-2 pb-3">
 						<div class="menu2 font-weight-bold d-none">${lesson.category}</div><!-- 안보이게 할 예정  -->
 						<img class="menu2" alt="${lesson.category}사진" width="200" height="200" src="${lesson.imagePath}">
 						<div class="font-weight-bold menu2">${lesson.className}</div>
 						<div class="font-weight-bold menu2">${lesson.introduce}</div>
-						<a type="button" class="priceBtn btn text-white" href="#">${lesson.price}</a>
-						<button type="button" class="deleteBtn1 btn-sm bg-danger text-white border-0" data-class-id="${lesson.id}" data-toggle="modal" data-target="#moreModal">삭제</button>
-						
+						<div class="d-flex justify-content-between form-control border-0">
+							<a type="button" class="priceBtn btn text-white" href="/reservation/class_reservation/view">${lesson.price}</a>
+							<button type="button" class="deleteBtn1 btn-sm bg-danger text-white border-0" data-class-id="${lesson.id}" data-toggle="modal" data-target="#moreModal">삭제</button>
+						</div>
 					</div>
 			
 				</div>
