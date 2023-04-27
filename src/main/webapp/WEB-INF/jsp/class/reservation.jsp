@@ -18,6 +18,7 @@
   		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
   		
   		<link rel="stylesheet" href="/static/css/style.css" type="text/css">
+  		<link rel="stylesheet" href="/static/css/CalenderStyle.css" type="text/css">
 </head>
 <body>
 	
@@ -55,7 +56,7 @@
 			</div>
 			
 			<div class="explanation text-center pb-4">
-				쁘띠 Dessert의 수업 레시피는 업장 생산 레시피를 기본으로 합니다. 온라인에서 쉽게 접할 수 있는 레시피는 때로는 깊이나 디테일이 부족하여 완성도가 떨어질 때가 많습니다. 
+				Petit Dessert의 수업 레시피는 업장 생산 레시피를 기본으로 합니다. 온라인에서 쉽게 접할 수 있는 레시피는 때로는 깊이나 디테일이 부족하여 완성도가 떨어질 때가 많습니다. 
 				샵 생산용 레시피를 고려하고 있는 분들께 자신있게 추천하는 정확하고 완성도 높은 레시피를 담았습니다.
 				효율적인 생산과 좋은 맛을 기본으로 한 이 수업의 생산 레시피는 디저트 샵의 판매 메뉴로도 충분 할 뿐 아니라 좋은 재료를 활용한 전문가의 맛을 추구하는 까다로운 홈베이커 분들의 눈높이에도 충분합니다.
 			</div>
@@ -64,185 +65,49 @@
 			
 			<div class="pt-4"></div>
 			
-			<div id="my-calendar" class="my-calendar clearfix">
-			    <div class="clicked-date">
-			      <div class="cal-day"></div>
-			      <div class="cal-date"></div>
-			    </div>
-			    <div class="calendar-box">
-			      <div class="ctr-box clearfix">
-			        <button type="button" title="prev" class="btn-cal prev">
-			        </button>
-			        <span class="cal-month"></span>
-			        <span class="cal-year"></span>
-			        <button type="button" title="next" class="btn-cal next">
-			        </button>
-			      </div>
-			      <table class="cal-table">
-			        <thead>
-			          <tr>
-			            <th>일</th>
-			            <th>월</th>
-			            <th>화</th>
-			            <th>수</th>
-			            <th>목</th>
-			            <th>금</th>
-			            <th>토</th>
-			          </tr>
-			        </thead>
-			        <tbody class="cal-body"></tbody>
-			      </table>
-			    </div>
-			  </div>
+			<c:import url="/WEB-INF/jsp/class/reservationCalender.jsp" />
 			  
-			   <div class="pt-4"></div>
-			  <div class="border border1 border-top border-2"></div>
+			   <div class="pt-3"></div>
+			   
+			  	<div class="border border1 border-top border-2"></div>
+			  	
+			  	<div class="border border1 border-top border-2"></div>
+			  <div class="d-flex justify-content-start">	
+			  <div class="text2 pl-5 pt-3">
+			  	<div class="font-weight-bold">손쉽게 만드는 Petit Desert 클래스!</div>
+			  	<br>
+			  	Petit Dessert만의 특별한 레시피로 초보자 분들도 부담없이 맛있고 이쁘게 만들 수 있습니다!
+				제빵 전문가가 옆에서 한분 한분 각각 봐드리며
+				어렵지 않고 재미있게 즐기실 수 있습니다!
+
+				이색데이트로도 재미있게 즐기 실 수 있습니다!<br>
+				※취소 경우 5일전에 미리 알려주시면 감사하겠습니다.
 			 
-			  
-			<div id="time" class="time d-flex justify-content-center pt-5 d-flex flex-wrap row">
-				<button type="button" title="text" class="timeBtn bg-warning text-white">10:00</button>
-			</div>  
+			   </div>
+				<div id="time" class="time d-flex justify-content-end align-items-start pr-5">
+				
+					<div class="">
+						<button type="button" title="text" class="timeBtn bg-warning text-white border-white">10:00</button>
+						<button type="button" title="text" class="timeBtn bg-warning text-white border-white">12:00</button>
+						<button type="button" title="text" class="timeBtn bg-warning text-white border-white">14:00</button>
+						<button type="button" title="text" class="timeBtn bg-warning text-white border-white">16:00</button>
+						<button type="button" title="text" class="timeBtn bg-warning text-white border-white">18:00</button>
+					</div>
+				</div>  
+			</div>
 			
+			<div class="pt-5"></div>
+			
+			<div class="reservation d-flex justify-content-center">
+				<button type="button" id="reservationBtn" class="reservationBtn form-contol bg-warning text-white text-center pt-1 rounded border-white">예약하기</button>
+			</div>
+			<div class="pt-4"></div>
 			<hr>
 	
 			<c:import url="/WEB-INF/jsp/include/footer.jsp" />
-	</div>	
+			
 	
-	<script>
-	
-	const init = {
-			  monList: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-			  dayList: ['일요일', '월요일', '화요일', '수요일', '목요일', 'Friday', 'Saturday'],
-			  today: new Date(),
-			  monForChange: new Date().getMonth(),
-			  activeDate: new Date(),
-			  getFirstDay: (yy, mm) => new Date(yy, mm, 1),
-			  getLastDay: (yy, mm) => new Date(yy, mm + 1, 0),
-			  nextMonth: function () {
-			    let d = new Date();
-			    d.setDate(1);
-			    d.setMonth(++this.monForChange);
-			    this.activeDate = d;
-			    return d;
-			  },
-			  prevMonth: function () {
-			    let d = new Date();
-			    d.setDate(1);
-			    d.setMonth(--this.monForChange);
-			    this.activeDate = d;
-			    return d;
-			  },
-			  addZero: (num) => (num < 10) ? '0' + num : num,
-			  activeDTag: null,
-			  getIndex: function (node) {
-			    let index = 0;
-			    while (node = node.previousElementSibling) {
-			      index++;
-			    }
-			    return index;
-			  }
-			};
-
-			const $calBody = document.querySelector('.cal-body');
-			const $btnNext = document.querySelector('.btn-cal.next');
-			const $btnPrev = document.querySelector('.btn-cal.prev');
-
-			/**
-			 * @param {number} date
-			 * @param {number} dayIn
-			*/
-			function loadDate (date, dayIn) {
-			  document.querySelector('.cal-date').textContent = date;
-			  document.querySelector('.cal-day').textContent = init.dayList[dayIn];
-			}
-
-			/**
-			 * @param {date} fullDate
-			 */
-			function loadYYMM (fullDate) {
-			  let yy = fullDate.getFullYear();
-			  let mm = fullDate.getMonth();
-			  let firstDay = init.getFirstDay(yy, mm);
-			  let lastDay = init.getLastDay(yy, mm);
-			  let markToday;  // for marking today date
-			  
-			  if (mm === init.today.getMonth() && yy === init.today.getFullYear()) {
-			    markToday = init.today.getDate();
-			  }
-
-			  document.querySelector('.cal-month').textContent = init.monList[mm];
-			  document.querySelector('.cal-year').textContent = yy;
-
-			  let trtd = '';
-			  let startCount;
-			  let countDay = 0;
-			  for (let i = 0; i < 6; i++) {
-			    trtd += '<tr>';
-			    for (let j = 0; j < 7; j++) {
-			      if (i === 0 && !startCount && j === firstDay.getDay()) {
-			        startCount = 1;
-			      }
-			      if (!startCount) {
-			        trtd += '<td>'
-			      } else {
-			        let fullDate = yy + '.' + init.addZero(mm + 1) + '.' + init.addZero(countDay + 1);
-			        trtd += '<td class="day';
-			        trtd += (markToday && markToday === countDay + 1) ? ' today" ' : '"';
-			        trtd += ` data-date="${countDay + 1}" data-fdate="${fullDate}">`;
-			      }
-			      trtd += (startCount) ? ++countDay : '';
-			      if (countDay === lastDay.getDate()) { 
-			        startCount = 0; 
-			      }
-			      trtd += '</td>';
-			    }
-			    trtd += '</tr>';
-			  }
-			  $calBody.innerHTML = trtd;
-			}
-
-			/**
-			 * @param {string} val
-			 */
-			function createNewList (val) {
-			  let id = new Date().getTime() + '';
-			  let yy = init.activeDate.getFullYear();
-			  let mm = init.activeDate.getMonth() + 1;
-			  let dd = init.activeDate.getDate();
-			  const $target = $calBody.querySelector(`.day[data-date="${dd}"]`);
-
-			  let date = yy + '.' + init.addZero(mm) + '.' + init.addZero(dd);
-
-			  let eventData = {};
-			  eventData['date'] = date;
-			  eventData['memo'] = val;
-			  eventData['complete'] = false;
-			  eventData['id'] = id;
-			  init.event.push(eventData);
-			  $todoList.appendChild(createLi(id, val, date));
-			}
-
-			loadYYMM(init.today);
-			loadDate(init.today.getDate(), init.today.getDay());
-
-			$btnNext.addEventListener('click', () => loadYYMM(init.nextMonth()));
-			$btnPrev.addEventListener('click', () => loadYYMM(init.prevMonth()));
-
-			$calBody.addEventListener('click', (e) => {
-			  if (e.target.classList.contains('day')) {
-			    if (init.activeDTag) {
-			      init.activeDTag.classList.remove('day-active');
-			    }
-			    let day = Number(e.target.textContent);
-			    loadDate(day, e.target.cellIndex);
-			    e.target.classList.add('day-active');
-			    init.activeDTag = e.target;
-			    init.activeDate.setDate(day);
-			    reloadTodo();
-			  }
-			});
-	
-	</script>
+	</div>
 
 
 </body>

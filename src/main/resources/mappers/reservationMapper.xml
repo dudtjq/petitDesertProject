@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+   <mapper namespace="com.petitdesert.page.class1.reservation.dao.ReservationDAO">
+   		<insert id="insertReservation" parameterType="map">
+   
+	  		    INSERT INTO 
+					`reservation`
+				(
+					`userId`
+					, `lessonId`
+					, `reservationDay`
+					, `reservationTime`
+					, `createdAt`
+					, `updatedAt`
+				)
+				VALUE 
+				(
+					#{userId}
+					, #{lessonId}
+					, #{reservationDay}
+					, #{reservationTime}
+					, now()
+					, now()
+				)
+			
+   		</insert>
+   	</mapper>
