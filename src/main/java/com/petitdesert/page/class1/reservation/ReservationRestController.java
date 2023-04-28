@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/reservation")
 public class ReservationRestController {
 	
-	public Map<String, String> reservationResult(
-			@RequestParam("lessonId") int lessonId
-			, @RequestParam("reservationDay") Date reservationDay
-			, @RequestParam("reservationtime") Time reservationtime
-			, HttpSession session
-			){
+//	public Map<String, String> reservationResult(
+//			@RequestParam("lessonId") int lessonId
+//			, @RequestParam("reservationDay") Date reservationDay
+//			, @RequestParam("reservationtime") Time reservationtime
+//			, HttpSession session
+//			){
 		
-	}
+//	}
 
 }

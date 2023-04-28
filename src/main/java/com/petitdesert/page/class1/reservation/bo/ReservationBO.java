@@ -10,15 +10,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class ReservationBO {
 
-	public int addReservation(
-			int userId
-			, int lessonId
-			, Date reservationDay
-			, Time reservationtime
-			) {
+//	public int addReservation(
+//			int userId
+//			, int lessonId
+//			, Date reservationDay
+//			, Time reservationtime
+//			) {
 		
 		
 		
-	}
+//	}
 	
 }

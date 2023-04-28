@@ -26,7 +26,7 @@
 		<c:import url="/WEB-INF/jsp/include/header.jsp" />
 		
 		<div class="d-flex justify-content-end pt-3">
-			<a type="button" class="listBtn btn text-white bg-warning" href="#">목록보기</a>
+			<a type="button" class="listBtn btn text-white bg-warning" href="/reservation/class_list/view">목록보기</a>
 		</div>
 		
 			<div class="text-center pt-4 pb-2">
