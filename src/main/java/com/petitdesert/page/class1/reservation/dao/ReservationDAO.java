@@ -14,6 +14,7 @@ public interface ReservationDAO {
 			, @Param("lessonId") int lessonId
 			, @Param("reservationDay") Date reservationDay
 			, @Param("reservationTime") Time reservationTime
+			, @Param("situation") String situation
 			);
 
 }

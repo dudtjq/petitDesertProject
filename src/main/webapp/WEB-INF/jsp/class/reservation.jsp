@@ -72,8 +72,9 @@
 			  	<div class="border border1 border-top border-2"></div>
 			  	
 			  	<div class="border border1 border-top border-2"></div>
-			  <div class="d-flex justify-content-start">	
-			  <div class="text2 pl-5 pt-3">
+			  <div class="d-flex justify-content-start">
+			  	
+			  <div class="text2 pl-5 pt-3 d-none">
 			  	<div class="font-weight-bold">손쉽게 만드는 Petit Desert 클래스!</div>
 			  	<br>
 			  	Petit Dessert만의 특별한 레시피로 초보자 분들도 부담없이 맛있고 이쁘게 만들 수 있습니다!
@@ -84,9 +85,9 @@
 				※취소 경우 5일전에 미리 알려주시면 감사하겠습니다.
 			 
 			   </div>
-				<div id="time" class="time d-flex justify-content-end align-items-start pr-5">
+				<div id="time" class="time d-flex  justify-content-end align-items-start pr-5">
 				
-					<div class="">
+					<div class="timeBtn d-none pr-5">
 						<button type="button" title="text" class="timeBtn bg-warning text-white border-white">10:00</button>
 						<button type="button" title="text" class="timeBtn bg-warning text-white border-white">12:00</button>
 						<button type="button" title="text" class="timeBtn bg-warning text-white border-white">14:00</button>
@@ -98,9 +99,11 @@
 			
 			<div class="pt-5"></div>
 			
-			<div class="reservation d-flex justify-content-center">
-				<button type="button" id="reservationBtn" class="reservationBtn form-contol bg-warning text-white text-center pt-1 rounded border-white">예약하기</button>
-			</div>
+			<div class="reservation d-none">
+				<div class="reservation d-flex justify-content-center">
+					<button type="button" id="reservationBtn" class="reservationBtn form-contol bg-warning text-white text-center pt-1 rounded border-white">예약하기</button>
+				</div>
+			</div>	
 			<div class="pt-4"></div>
 			<hr>
 	
@@ -108,7 +111,66 @@
 			
 	
 	</div>
-
+	
+	<script>
+		
+		$(document).ready(function(){
+			
+		
+			$(".timeBtn").on("click", function(){
+				$(".reservation").removeClass("d-none");
+				
+			});
+			
+			$(".cal-body").on("click", function(){
+				 $(".text2").removeClass("d-none");
+				 $(".timeBtn").removeClass("d-none");
+				
+			});
+			
+			$("#reservationBtn").on("click", function(){
+				
+				let date = $(".cal-body").val();
+				let time = $(".timeBtn").val();
+				
+				if(date == ""){
+					alert("날짜를 선택하세요");
+					return;
+				}
+				
+				if(time == ""){
+					alert("시간을 선택하세요");
+					return;
+				}
+				
+				$.ajax({
+					type:"post"
+					, url:"/reservation/class_reservation"
+					, data:{"reservationDay":date, "reservationTime":time}
+					, success:function(data){
+						
+						if(data.result == "success"){
+							alert("예약 성공");
+						}else{
+							alert("예약 실패");
+						}
+						
+					}
+					, error:function(){
+						alert("예약 오류");
+					}
+					
+				
+				});
+				
+			});
+			
+			
+			
+		});
+	
+	
+	</script>
 
 </body>
 </html>

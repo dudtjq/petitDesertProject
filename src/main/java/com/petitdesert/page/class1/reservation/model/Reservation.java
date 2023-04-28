@@ -10,13 +10,20 @@ public class Reservation {
 	private int id;
 	private int userId;
 	private int lessonId;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	
 	private Date reservationDate;
-	@DateTimeFormat(pattern = "HH-mm-ss")
+	
 	private Time reservationTime;
+	private String situation;
 	private Date createdAt;
 	private Date updatedAt;
 	
+	public String getSituation() {
+		return situation;
+	}
+	public void setSituation(String situation) {
+		this.situation = situation;
+	}
 	
 	public int getId() {
 		return id;

@@ -60,7 +60,7 @@
 					<td>케이크</td>
 					<td>빵쟁이</td>
 					<td>2023-04-30 10:00:00</td>
-					<td class="text-success">대기중</td>
+					<td class=""><a href="/reservation/class_list/view" class="">예약받기</a></td>
 				</tr>
 			</tbody>
 		</table>
