@@ -16,6 +16,7 @@ public class ReservationDetail {
 	private Date reservationDate;
 	@DateTimeFormat(pattern = "HH-mm-ss")
 	private Time reservationTime;
+	private String situation;
 	
 	public int getId() {
 		return id;
@@ -58,6 +59,12 @@ public class ReservationDetail {
 	}
 	public void setReservationTime(Time reservationTime) {
 		this.reservationTime = reservationTime;
+	}
+	public String getSituation() {
+		return situation;
+	}
+	public void setSituation(String situation) {
+		this.situation = situation;
 	}
 	
 	

@@ -9,6 +9,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+		
+
 	  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
   		<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -19,6 +21,7 @@
   		
   		<link rel="stylesheet" href="/static/css/style.css" type="text/css">
   		<link rel="stylesheet" href="/static/css/CalenderStyle.css" type="text/css">
+  		<script type="text/javascript" src="/static/js/calender.js"></script>
 </head>
 <body>
 	
@@ -65,7 +68,36 @@
 			
 			<div class="pt-4"></div>
 			
-			<c:import url="/WEB-INF/jsp/class/reservationCalender.jsp" />
+			<div id="my-calendar" class="my-calendar clearfix">
+			    <div class="clicked-date">
+			      <div class="cal-day"></div>
+			      <div class="cal-date"></div>
+			    </div>
+			    <div class="calendar-box">
+			      <div class="ctr-box clearfix">
+			        <button type="button" title="prev" class="btn-cal prev">
+			        </button>
+			        <span class="cal-month"></span>
+			        <span class="cal-year"></span>
+			        <button type="button" title="next" class="btn-cal next">
+			        </button>
+			      </div>
+			      <table class="cal-table">
+			        <thead>
+			          <tr>
+			            <th>일</th>
+			            <th>월</th>
+			            <th>화</th>
+			            <th>수</th>
+			            <th>목</th>
+			            <th>금</th>
+			            <th>토</th>
+			          </tr>
+			        </thead>
+			        <tbody id="today" class="cal-body"></tbody>
+			      </table>
+			    </div>
+			  </div>
 			  
 			   <div class="pt-3"></div>
 			   
@@ -116,58 +148,91 @@
 		
 		$(document).ready(function(){
 			
-		
+	
 			$(".timeBtn").on("click", function(){
 				$(".reservation").removeClass("d-none");
 				
 			});
 			
-			$(".cal-body").on("click", function(){
+			$("#today").on("click", function(){
 				 $(".text2").removeClass("d-none");
 				 $(".timeBtn").removeClass("d-none");
 				
 			});
 			
+		
+			
 			$("#reservationBtn").on("click", function(){
+			
+				// 날짜 확인 완료
+				console.log(myCalender.activeDate);
 				
-				let date = $(".cal-body").val();
-				let time = $(".timeBtn").val();
 				
-				if(date == ""){
-					alert("날짜를 선택하세요");
-					return;
-				}
+		
 				
-				if(time == ""){
-					alert("시간을 선택하세요");
-					return;
-				}
-				
-				$.ajax({
-					type:"post"
-					, url:"/reservation/class_reservation"
-					, data:{"reservationDay":date, "reservationTime":time}
-					, success:function(data){
-						
-						if(data.result == "success"){
-							alert("예약 성공");
-						}else{
-							alert("예약 실패");
-						}
-						
-					}
-					, error:function(){
-						alert("예약 오류");
-					}
-					
-				
-				});
+//				$.ajax({
+//					type:"post"
+//					, url:"/reservation/class_reservation"
+//					, data:{"reservationDay":date, "reservationTime":time}
+//					, success:function(data){
+//						
+//						if(data.result == "success"){
+//							alert("예약 성공");
+//						}else{
+//							alert("예약 실패");
+//						}
+//						
+//					}
+//					, error:function(){
+//						alert("예약 오류");
+//					}
+//					
+//				
+//				});
 				
 			});
 			
 			
 			
 		});
+		
+		// calender code
+		
+		let myCalender = {
+				  monList: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+				  dayList: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+				  today: new Date(),
+				  monForChange: new Date().getMonth(),
+				  activeDate: new Date(),
+				  getFirstDay: (yy, mm) => new Date(yy, mm, 1),
+				  getLastDay: (yy, mm) => new Date(yy, mm + 1, 0),
+				  nextMonth: function () {
+				    let d = new Date();
+				    d.setDate(1);
+				    d.setMonth(++this.monForChange);
+				    this.activeDate = d;
+				    return d;
+				  },
+				  prevMonth: function () {
+				    let d = new Date();
+				    d.setDate(1);
+				    d.setMonth(--this.monForChange);
+				    this.activeDate = d;
+				    return d;
+				  },
+				  addZero: (num) => (num < 10) ? '0' + num : num,
+				  activeDTag: null,
+				  getIndex: function (node) {
+				    let index = 0;
+				    while (node = node.previousElementSibling) {
+				      index++;
+				    }
+				    return index;
+				  }
+				};
+
+			
+				calender(myCalender);
 	
 	
 	</script>

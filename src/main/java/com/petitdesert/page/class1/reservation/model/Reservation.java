@@ -3,16 +3,12 @@ package com.petitdesert.page.class1.reservation.model;
 import java.sql.Time;
 import java.util.Date;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 public class Reservation {
 
 	private int id;
 	private int userId;
 	private int lessonId;
-	
 	private Date reservationDate;
-	
 	private Time reservationTime;
 	private String situation;
 	private Date createdAt;
