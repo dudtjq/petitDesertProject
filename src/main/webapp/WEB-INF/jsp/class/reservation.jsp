@@ -103,10 +103,10 @@
 			   
 			  	<div class="border border1 border-top border-2"></div>
 			  	
-			  	<div class="border border1 border-top border-2"></div>
+			  	<div class="hr border border1 border-top border-2"></div>
 			  <div class="d-flex justify-content-start">
 			  	
-			  <div class="text2 pl-5 pt-3 d-none">
+			  <div class="text2 pl-5 pr-5 pt-3 d-none">
 			  	<div class="font-weight-bold">손쉽게 만드는 Petit Desert 클래스!</div>
 			  	<br>
 			  	Petit Dessert만의 특별한 레시피로 초보자 분들도 부담없이 맛있고 이쁘게 만들 수 있습니다!
@@ -119,12 +119,12 @@
 			   </div>
 				<div id="time" class="time d-flex  justify-content-end align-items-start pr-5">
 				
-					<div class="timeBtn d-none pr-5">
-						<button type="button" title="text" class="timeBtn bg-warning text-white border-white">10:00</button>
-						<button type="button" title="text" class="timeBtn bg-warning text-white border-white">12:00</button>
-						<button type="button" title="text" class="timeBtn bg-warning text-white border-white">14:00</button>
-						<button type="button" title="text" class="timeBtn bg-warning text-white border-white">16:00</button>
-						<button type="button" title="text" class="timeBtn bg-warning text-white border-white">18:00</button>
+					<div class="timeBtns d-none pl-3 pr-3">
+						<button type="button" title="text" class="timeBtn bg-warning text-white border-white" value="10:00:00">10:00</button>
+						<button type="button" title="text" class="timeBtn bg-warning text-white border-white" value="12:00:00">12:00</button>
+						<button type="button" title="text" class="timeBtn bg-warning text-white border-white" value="14:00:00">14:00</button>
+						<button type="button" title="text" class="timeBtn bg-warning text-white border-white" value="16:00:00">16:00</button>
+						<button type="button" title="text" class="timeBtn bg-warning text-white border-white" value="18:00:00">18:00</button>
 					</div>
 				</div>  
 			</div>
@@ -149,14 +149,14 @@
 		$(document).ready(function(){
 			
 	
-			$(".timeBtn").on("click", function(){
+			$(".timeBtns").on("click", function(){
 				$(".reservation").removeClass("d-none");
 				
 			});
 			
 			$("#today").on("click", function(){
 				 $(".text2").removeClass("d-none");
-				 $(".timeBtn").removeClass("d-none");
+				 $(".timeBtns").removeClass("d-none");
 				
 			});
 			
@@ -165,8 +165,13 @@
 			$("#reservationBtn").on("click", function(){
 			
 				// 날짜 확인 완료
-				console.log(myCalender.activeDate);
+				// 선택한 날짜로 확인 완료
+				console.log(myCalender.activeDate.toISOString().split('T')[0]);
 				
+				let time = $(".timeBtn").val();
+				
+				console.log(time);
+			
 				
 		
 				

@@ -53,6 +53,7 @@ function loadYYMM (fullDate) {
   let firstDay = init.getFirstDay(yy, mm);
   let lastDay = init.getLastDay(yy, mm);
   let markToday;  // for marking today date
+
   
   if (mm === init.today.getMonth() && yy === init.today.getFullYear()) {
     markToday = init.today.getDate();
