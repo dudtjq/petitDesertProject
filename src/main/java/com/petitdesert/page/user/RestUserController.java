@@ -24,6 +24,7 @@ public class RestUserController {
 	@Autowired
 	private UserBO userBO;
 	
+	
 	// 회원 가입
 	@PostMapping("/signup")
 	@ResponseBody
@@ -71,7 +72,8 @@ public class RestUserController {
 			session.setAttribute("userId", user.getId());
 			session.setAttribute("userLoginId", user.getLoginId());
 			session.setAttribute("checkNumber", user.getCheckNumber());
-			
+			session.setAttribute("name", user.getName());
+			session.setAttribute("email", user.getEmail());
 		}else {
 			
 			resultMap.put("result", "fail");	

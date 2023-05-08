@@ -25,13 +25,13 @@ public class ReservationRestController {
 	private ReservationBO reservationBO;
 	
 	
-	@PostMapping("class_reservation")
+	@PostMapping("/class_reservation")
 	@ResponseBody
 	public Map<String, String> reservationResult(
 			@RequestParam("lessonId") int lessonId
 			, @DateTimeFormat(pattern = "yyyy-MM-dd")
 			  @RequestParam("reservationDay") Date reservationDay
-			, @DateTimeFormat(pattern = "HH-mm-ss")
+			, @DateTimeFormat(pattern = "HH:mm:ss")
 			  @RequestParam("reservationtime") Time reservationtime
 			, @RequestParam("situation") String situation
 			, HttpSession session

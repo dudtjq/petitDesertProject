@@ -120,11 +120,11 @@
 				<div id="time" class="time d-flex  justify-content-end align-items-start pr-5">
 				
 					<div class="timeBtns d-none pl-3 pr-3">
-						<button type="button" title="text" class="timeBtn bg-warning text-white border-white" value="10:00:00">10:00</button>
-						<button type="button" title="text" class="timeBtn bg-warning text-white border-white" value="12:00:00">12:00</button>
-						<button type="button" title="text" class="timeBtn bg-warning text-white border-white" value="14:00:00">14:00</button>
-						<button type="button" title="text" class="timeBtn bg-warning text-white border-white" value="16:00:00">16:00</button>
-						<button type="button" title="text" class="timeBtn bg-warning text-white border-white" value="18:00:00">18:00</button>
+						<button type="button" name="time" title="text" id="timeBtn" class="timeBtn bg-warning text-white border-white" value="10:00:00">10:00</button>
+						<button type="button" name="time" title="text" id="timeBtn" class="timeBtn bg-warning text-white border-white" value="12:00:00">12:00</button>
+						<button type="button" name="time" title="text" id="timeBtn" class="timeBtn bg-warning text-white border-white" value="14:00:00">14:00</button>
+						<button type="button" name="time" title="text" id="timeBtn" class="timeBtn bg-warning text-white border-white" value="16:00:00">16:00</button>
+						<button type="button" name="time" title="text" id="timeBtn" class="timeBtn bg-warning text-white border-white" value="18:00:00">18:00</button>
 					</div>
 				</div>  
 			</div>
@@ -148,7 +148,6 @@
 		
 		$(document).ready(function(){
 			
-	
 			$(".timeBtns").on("click", function(){
 				$(".reservation").removeClass("d-none");
 				
@@ -160,40 +159,43 @@
 				
 			});
 			
-		
+			var time = null;
 			
+			$("button[name=time]").on('click', function() {
+				// 시간을 누르게 되면 value 값을 확인 할 수 있음  
+				 time = $(this).val();
+				
+				// console.log(time);
+			});
+			
+		
 			$("#reservationBtn").on("click", function(){
 			
 				// 날짜 확인 완료
 				// 선택한 날짜로 확인 완료
-				console.log(myCalender.activeDate.toISOString().split('T')[0]);
+				let date = myCalender.activeDate.toISOString().split('T')[0];
+				// console.log(date);
+				time = $(this).val();
 				
-				let time = $(".timeBtn").val();
+				$.ajax({
+					type:"post"
+					, url:"/reservation/class_reservation"
+					, data:{"reservationDay":date, "reservationTime":time}
+					, success:function(data){
+						
+						if(data.result == "success"){
+							alert("예약 성공");
+						}else{
+							alert("예약 실패");
+						}
+						
+					}
+					, error:function(){
+						alert("예약 오류");
+					}
+					
 				
-				console.log(time);
-			
-				
-		
-				
-//				$.ajax({
-//					type:"post"
-//					, url:"/reservation/class_reservation"
-//					, data:{"reservationDay":date, "reservationTime":time}
-//					, success:function(data){
-//						
-//						if(data.result == "success"){
-//							alert("예약 성공");
-//						}else{
-//							alert("예약 실패");
-//						}
-//						
-//					}
-//					, error:function(){
-//						alert("예약 오류");
-//					}
-//					
-//				
-//				});
+				});
 				
 			});
 			
