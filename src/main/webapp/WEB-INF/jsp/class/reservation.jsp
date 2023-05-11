@@ -38,16 +38,12 @@
 			</div>
 		
 			<div class="d-flex justify-content-center pt-4 pb-4">
-				<div class="font-weight-bold">Petit Desert에서 배울 수 있는 쁘띠갸또</div>
+				<div class="font-weight-bold">Petit Desert에서 알려드리는 특별한 레시피</div>
 			</div>
 			<div class="border border1 border-top border-2"></div>
 			
 			<div class="d-flex justify-content-center pt-4">
 				<img alt="쁘띠갸또 사진" width="500" height="300" src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAxOTEwMTRfMTc4%2FMDAxNTcxMDYwMjQ5NTIy.ch_3T3VmeX2aFYiEL99ZfPY7HE-9DdCiIImbP5DDtegg.pkMuBVkpkGkNGO7h4haF-9ZIO9hGSqE29n387xhCCssg.JPEG.vemy1004%2F1571060249311.jpg&type=a340">
-			</div>
-			
-			<div class="explanation pt-2 text-center">
-				<b>쁘띠갸또</b> 는 레이어드 된 스폰지, 머랭, 빵등에 크림, 커스터드 크림, 가나쉬, 잼, 마치판 혹은 젤리와 과일 등으로 필링한 것입니다.  일반적인 케이크, 크림 등을 층층히 쌓거나 빵 대신 크림이 내용물의 대부분을 차지하여 파운드 케이크같은 종류의 케이크들보다 훨씬 더 부드럽습니다.
 			</div>
 			
 			<div class="d-flex justify-content-center pt-4">
@@ -133,7 +129,7 @@
 			
 			<div class="reservation d-none">
 				<div class="reservation d-flex justify-content-center">
-					<button type="button" id="reservationBtn" class="reservationBtn form-contol bg-warning text-white text-center pt-1 rounded border-white">예약하기</button>
+					<button type="button" id="reservationBtn" class="reservationBtn form-contol bg-warning text-white text-center pt-1 rounded border-white" data-lesson-id="7">예약하기</button>
 				</div>
 			</div>	
 			<div class="pt-4"></div>
@@ -148,6 +144,8 @@
 		
 		$(document).ready(function(){
 			
+			var time = null;
+			
 			$(".timeBtns").on("click", function(){
 				$(".reservation").removeClass("d-none");
 				
@@ -159,28 +157,35 @@
 				
 			});
 			
-			var time = null;
 			
 			$("button[name=time]").on('click', function() {
 				// 시간을 누르게 되면 value 값을 확인 할 수 있음  
 				 time = $(this).val();
-				
+				// value 속성이 찍힘
 				// console.log(time);
 			});
 			
 		
 			$("#reservationBtn").on("click", function(){
 			
+				let lessonId = $(this).data("lesson-id");
+			
 				// 날짜 확인 완료
 				// 선택한 날짜로 확인 완료
 				let date = myCalender.activeDate.toISOString().split('T')[0];
-				// console.log(date);
-				time = $(this).val();
+				console.log(date);
+				
+				if(time != null){
+					console.log(time);
+				}
+				
+				
+				
 				
 				$.ajax({
-					type:"post"
+					type:"get"
 					, url:"/reservation/class_reservation"
-					, data:{"reservationDay":date, "reservationTime":time}
+					, data:{"lessonId":lessonId ,"reservationDay":date, "reservationTime":time}
 					, success:function(data){
 						
 						if(data.result == "success"){

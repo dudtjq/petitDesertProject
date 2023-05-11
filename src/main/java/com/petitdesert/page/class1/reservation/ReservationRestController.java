@@ -1,6 +1,5 @@
 package com.petitdesert.page.class1.reservation;
 
-import java.sql.Time;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -9,7 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,15 +24,14 @@ public class ReservationRestController {
 	private ReservationBO reservationBO;
 	
 	
-	@PostMapping("/class_reservation")
+	@GetMapping("/class_reservation")
 	@ResponseBody
 	public Map<String, String> reservationResult(
 			@RequestParam("lessonId") int lessonId
 			, @DateTimeFormat(pattern = "yyyy-MM-dd")
 			  @RequestParam("reservationDay") Date reservationDay
 			, @DateTimeFormat(pattern = "HH:mm:ss")
-			  @RequestParam("reservationtime") Time reservationtime
-			, @RequestParam("situation") String situation
+			  @RequestParam("reservationTime") Date reservationtime  
 			, HttpSession session
 			){
 		
@@ -41,7 +39,7 @@ public class ReservationRestController {
 		
 		Map<String, String> resultMap = new HashMap<>();
 		
-		int count = reservationBO.addReservation(userId, lessonId, reservationDay, reservationtime, situation);
+		int count = reservationBO.addReservation(userId, lessonId, reservationDay, reservationtime);
 		
 		if(count == 1) {
 			resultMap.put("result", "success");

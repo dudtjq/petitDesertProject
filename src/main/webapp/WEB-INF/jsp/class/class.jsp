@@ -88,7 +88,7 @@
 						<div class="font-weight-bold menu2">${lesson.className}</div>
 						<div class="font-weight-bold menu2">${lesson.introduce}</div>
 						<div class="d-flex justify-content-between form-control border-0">
-							<a type="button" class="priceBtn btn text-white" href="/reservation/class_reservation/view">${lesson.price}</a>
+							<a type="button" class="priceBtn btn text-white" href="/reservation/class_reservation/view?lessonId=${lesson.id }">${lesson.price}</a>
 							<button type="button" class="deleteBtn1 btn-sm bg-danger text-white border-0" data-class-id="${lesson.id}" data-toggle="modal" data-target="#moreModal">삭제</button>
 						</div>
 					</div>

@@ -14,7 +14,7 @@ public class ReservationDetail {
 	private String imagePath;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date reservationDate;
-	@DateTimeFormat(pattern = "HH-mm-ss")
+	@DateTimeFormat(pattern = "HH:mm:ss")
 	private Time reservationTime;
 	private String situation;
 	

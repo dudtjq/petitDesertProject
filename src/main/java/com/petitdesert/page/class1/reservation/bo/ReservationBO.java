@@ -1,6 +1,6 @@
 package com.petitdesert.page.class1.reservation.bo;
 
-import java.sql.Time;
+
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +18,10 @@ public class ReservationBO {
 			int userId
 			, int lessonId
 			, Date reservationDay
-			, Time reservationtime
-			, String situation
+			, Date reservationtime
 			) {
 		
-		return reservationDAO.insertReservation(userId, lessonId, reservationDay, reservationtime, situation);
+		return reservationDAO.insertReservation(userId, lessonId, reservationDay, reservationtime, "대기중");
 		
 		
 	}
