@@ -77,6 +77,26 @@
  
   	</select>
   	
+  	<select id="selectLessonById" parameterType="int"
+  	resultType="com.petitdesert.page.class1.model.Lesson">
+  	
+	  	SELECT
+	  			`id`
+	  			, `userId`
+	  			, `className`
+	  			, `introduce`
+	  			, `price`
+	  		 	, `imagePath`
+	  		 	, `category`
+	  		 	, `createdAt`
+	  		 	, `updatedAt`
+	  		FROM
+	  			`lesson`
+	 		WHERE
+				`id` = #{id}
+		
+  	</select>
+  	
   	<delete id="deleteLesson" parameterType="int">
   	
   		DELETE FROM

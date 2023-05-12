@@ -57,6 +57,12 @@ public class UserBO {
 		
 	}
 	
+	public User getUserById(int userId) {
+		
+		return userDAO.selectUserById(userId);
+		
+	}
+	
 	
 	
 }

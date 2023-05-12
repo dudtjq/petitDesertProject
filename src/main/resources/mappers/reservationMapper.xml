@@ -30,4 +30,38 @@
 				)
 			
    		</insert>
+   		
+   		<select id="selectReservation" resultType="com.petitdesert.page.class1.reservation.model.Reservation"
+  	    parameterType="map">
+  	
+  		SELECT
+  			`id`
+  			, `userId`
+  			, `lessonId`
+  			, `reservationDay`
+  			, `reservationTime`
+  		 	, `situation`
+  		 	, `createdAt`
+  		 	, `updatedAt`
+  		FROM
+  		
+  			`reservation`
+  	
+ 		ORDER BY 
+  		
+			`id` DESC;
+ 
+  	</select>
+  	
+  	
+  	<delete id="deleteReservation" parameterType="int">
+  	
+  		DELETE FROM
+			`reservation`
+		WHERE
+			`id` = #{id}
+  	
+  	</delete>
+   		
+   		
    	</mapper>

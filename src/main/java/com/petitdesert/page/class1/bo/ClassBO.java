@@ -54,5 +54,11 @@ public class ClassBO {
 	
 		
 	}
+	
+	public Lesson getLessonById(int userId) {
+		
+		return classDAO.selectLessonById(userId);
+		
+	}
 
 }

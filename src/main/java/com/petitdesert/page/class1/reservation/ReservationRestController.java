@@ -31,7 +31,7 @@ public class ReservationRestController {
 			, @DateTimeFormat(pattern = "yyyy-MM-dd")
 			  @RequestParam("reservationDay") Date reservationDay
 			, @DateTimeFormat(pattern = "HH:mm:ss")
-			  @RequestParam("reservationTime") Date reservationtime  
+			  @RequestParam("reservationTime") Date reservationTime  
 			, HttpSession session
 			){
 		
@@ -39,7 +39,28 @@ public class ReservationRestController {
 		
 		Map<String, String> resultMap = new HashMap<>();
 		
-		int count = reservationBO.addReservation(userId, lessonId, reservationDay, reservationtime);
+		int count = reservationBO.addReservation(userId, lessonId, reservationDay, reservationTime);
+		
+		if(count == 1) {
+			resultMap.put("result", "success");
+		}else {
+			resultMap.put("result", "fail");
+		}
+		
+		return resultMap;
+		
+	}
+	
+	@GetMapping("/reservation/delete")
+	@ResponseBody
+	public Map<String, String> deleteClass(
+			@RequestParam(value="id", required=false) int id
+			, HttpSession session
+			){
+		
+		int count = reservationBO.deleteReservation(id);
+		
+		Map<String, String> resultMap = new HashMap<>();
 		
 		if(count == 1) {
 			resultMap.put("result", "success");

@@ -1,9 +1,6 @@
 package com.petitdesert.page.class1.reservation.model;
 
-import java.sql.Time;
 import java.util.Date;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 public class ReservationDetail {
 	
@@ -11,11 +8,9 @@ public class ReservationDetail {
 	private int userId;
 	private int lessonId;
 	private String className;
-	private String imagePath;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date reservationDate;
-	@DateTimeFormat(pattern = "HH:mm:ss")
-	private Time reservationTime;
+	private String name;
+	private Date reservationDay;
+	private Date reservationTime;
 	private String situation;
 	
 	public int getId() {
@@ -42,22 +37,22 @@ public class ReservationDetail {
 	public void setClassName(String className) {
 		this.className = className;
 	}
-	public String getImagePath() {
-		return imagePath;
+	public String getName() {
+		return name;
 	}
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public Date getReservationDate() {
-		return reservationDate;
+	public Date getReservationDay() {
+		return reservationDay;
 	}
-	public void setReservationDate(Date reservationDate) {
-		this.reservationDate = reservationDate;
+	public void setReservationDay(Date reservationDay) {
+		this.reservationDay = reservationDay;
 	}
-	public Time getReservationTime() {
+	public Date getReservationTime() {
 		return reservationTime;
 	}
-	public void setReservationTime(Time reservationTime) {
+	public void setReservationTime(Date reservationTime) {
 		this.reservationTime = reservationTime;
 	}
 	public String getSituation() {
@@ -66,6 +61,8 @@ public class ReservationDetail {
 	public void setSituation(String situation) {
 		this.situation = situation;
 	}
+	
+
 	
 	
 	

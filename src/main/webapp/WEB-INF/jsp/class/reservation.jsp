@@ -29,6 +29,7 @@
 	
 			<c:import url="/WEB-INF/jsp/include/header.jsp" />
 			
+			
 			<div class="d-flex justify-content-center pt-5">
 				<div><h3 class="font-weight-bold">클래스를 소개 합니다!</h3></div>
 			</div>
@@ -127,11 +128,13 @@
 			
 			<div class="pt-5"></div>
 			
-			<div class="reservation d-none">
-				<div class="reservation d-flex justify-content-center">
-					<button type="button" id="reservationBtn" class="reservationBtn form-contol bg-warning text-white text-center pt-1 rounded border-white" data-lesson-id="7">예약하기</button>
+	
+				<div class="reservation d-none">
+					<div class="reservation d-flex justify-content-center">                                                                                      <!-- param.으로 내가 얻고자 하는 값을 적용 시킬수 있음!! -->	
+						<button type="button" id="reservationBtn" class="reservationBtn form-contol bg-warning text-white text-center pt-1 rounded border-white" data-lesson-id="${param.lessonId}">예약하기</button>
+					</div>
 				</div>
-			</div>	
+			
 			<div class="pt-4"></div>
 			<hr>
 	
@@ -189,7 +192,10 @@
 					, success:function(data){
 						
 						if(data.result == "success"){
-							alert("예약 성공");
+							alert("예약 완료 입니다.");
+							
+							location.href="/class/new_class/view?category=쁘띠갸또";
+							
 						}else{
 							alert("예약 실패");
 						}

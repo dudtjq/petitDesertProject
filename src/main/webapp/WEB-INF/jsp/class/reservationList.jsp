@@ -38,31 +38,22 @@
 					<th>신청자</th>
 					<th>신청일자</th>
 					<th>비고</th>
+					<th></th>
 				</tr>
 			</thead>
+			<c:forEach var="reservation" items="${reservationList}" varStatus="status">
 			<tbody>
 				<tr>
-					<td>1</td>
-					<td>쁘띠갸또</td>
-					<td>이영섭</td>
-					<td>2023-04-28 12:00:00</td>
-					<td class="text-info">확정</td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td>구움과자</td>
-					<td>이지민</td>
-					<td>2023-04-29 14:00:00</td>
-					<td class="text-danger">취소</td>
-				</tr>
-				<tr>
-					<td>3</td>
-					<td>케이크</td>
-					<td>빵쟁이</td>
-					<td>2023-04-30 10:00:00</td>
-					<td class=""><a href="/reservation/class_list/view" class="">예약받기</a></td>
+					<td>${status.count}</td>
+					<td>${reservation.className}</td>
+					<td>${reservation.name}</td>
+					<td><fmt:formatDate value="${reservation.reservationDay}" pattern="yyyy년 MM월 dd일" />
+					 <fmt:formatDate value="${reservation.reservationTime}" pattern="HH:mm:ss" /></td>
+					<td class="text-info"><a href="#">${reservation.situation}</a></td>
+					<td><button type="button" class="deleteBtn1 btn-sm bg-danger text-white border-0" data-reservation-id="${reservation.id}" data-toggle="modal" data-target="#moreModal">삭제</button></td>
 				</tr>
 			</tbody>
+			</c:forEach>
 		</table>
 	</div>
 	
@@ -73,6 +64,82 @@
 	
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
 	</div>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="moreModal" tabindex="-1" role="dialog" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="modal-content">
+	      <div class="modal-body text-center">
+	      	<div class="modal-header">
+        		<h5 class="modal-title" id="exampleModalLabel">Petit Desert</h5>
+      		</div>
+		    <div class="modal-body">
+		       삭제 하시겠습니까?
+		    </div>
+		    <div class="modal-footer">
+		       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="cancelBtn">취소</button>
+		       <button type="button" class="btn btn-primary" id="deleteBtn2">삭제</button>
+		    </div>
+	  	 </div>
+	    
+	    </div>
+	  </div>
+	</div>
+	
+	<script>
+		$(document).ready(function(){
+			
+			// 삭제
+			$("#deleteBtn2").on("click", function(){
+				
+				let id = $(this).data("reservation-id");
+				
+				$.ajax({
+					
+						type:"get"
+						, url:"/reservation/reservation/delete"
+						, data:{"id":id}
+						, success:function(data){
+							
+							if(data.result =="success"){
+								location.reload();
+							}else{
+								alert("삭제 실패")
+							}
+							
+						}
+						, error:function(){
+							
+							alert("삭제 오류")
+							
+						}
+					
+				});
+				
+			});
+			
+			// 취소 시 그대로
+			$("#cancelBtn").on("click", function(){
+				
+				let classId = $(this).data("reservation-id");
+				location.reload();
+				
+			});
+			
+			// 버튼을 누르게 되면 모달 화면이 보이게 하게끔 연결
+			$(".deleteBtn1").on("click", function(){
+	 			
+	 			let classId = $(this).data("reservation-id")
+	 		
+	 			// data-class-id ="classId"
+	 			$("#deleteBtn2").data("reservation-id", classId);
+	 			
+			});
+		
+		});
+	
+	</script>
+		
 
 </body>
 </html>

@@ -79,6 +79,25 @@
   		 	`checkNumber` = #{checkNumber}		 	
   		
   	</select>
+  	
+  	<select id="selectUserById" parameterType="int"
+  	resultType="com.petitdesert.page.user.model.User">
+  			
+  		SELECT
+  			`id`
+  			, `loginId`
+  			, `password`
+  		 	, `name`
+  		 	, `email`
+  		 	, `checkNumber`
+  		 	, `createdAt`
+  		 	, `updatedAt`
+  		FROM
+  			`user`
+  		WHERE
+  		 	`id` = #{id}	
+  	  	
+  	</select>
   
   
   

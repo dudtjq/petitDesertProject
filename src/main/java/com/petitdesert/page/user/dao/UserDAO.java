@@ -26,6 +26,6 @@ public interface UserDAO {
 	
 	public User selectUserCheckNumber(@Param("checkNumber") int checkNumber);
 		
-
+	public User selectUserById(@Param("id") int id);
 
 }

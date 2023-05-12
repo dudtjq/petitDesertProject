@@ -27,4 +27,6 @@ public interface ClassDAO {
 	
 	public int deleteLesson(@Param("id") int id);
 	
+	public Lesson selectLessonById(@Param("id") int id);
+	
 }
