@@ -26,10 +26,12 @@
 	
 		<c:import url="/WEB-INF/jsp/include/header.jsp" />
 		
-		<h3 class="text-center">나의 정보</h3>
+		<div class="d-flex justify-content-center pt-5">
+			<div><h3 class="list font-weight-bold text-center">나의 정보</h3></div>
+		</div>
 		
-		<div class="container overflow:auto text-center d-flex justify-content-center"> 
-			<table class="table w-50">
+		<div class="d-flex justify-content-center"> 
+			<table class="list table text-center">
 			  <thead>
 			    <tr>
 			      <th scope="col"></th>
@@ -40,7 +42,6 @@
 			    <tr>
 			      <th scope="row">아이디</th>
 			      <td>${userLoginId }</td>
-			     
 			    </tr>
 			    <tr>
 			      <th scope="row">이름</th>

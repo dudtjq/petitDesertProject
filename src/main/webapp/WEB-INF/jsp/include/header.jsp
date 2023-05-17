@@ -3,7 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 		<header class="header d-flex justify-content-between align-items-center">
-			<h1 class="text-center pl-4">Petit Desert</h1>
+			<a href="/user/main/view"><h1 class="text-center pl-4 text-dark">Petit Desert</h1></a>
+		
 			
 				<nav class="nav d-flex justify-content-center align-items-center pt-2">
 			
