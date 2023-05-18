@@ -80,7 +80,7 @@
   	<select id="selectLessonById" parameterType="int"
   	resultType="com.petitdesert.page.class1.model.Lesson">
   	
-	  	SELECT
+	  		SELECT
 	  			`id`
 	  			, `userId`
 	  			, `className`
@@ -94,6 +94,7 @@
 	  			`lesson`
 	 		WHERE
 				`id` = #{id}
+				
 		
   	</select>
   	

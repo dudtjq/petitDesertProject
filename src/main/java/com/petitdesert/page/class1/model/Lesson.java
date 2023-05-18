@@ -14,7 +14,6 @@ public class Lesson {
 	private Date createdAt;
 	private Date updatedAt;
 	
-	
 	public int getId() {
 		return id;
 	}
@@ -69,6 +68,11 @@ public class Lesson {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+	
+	
+	
+	
+	
 	
 	
 	

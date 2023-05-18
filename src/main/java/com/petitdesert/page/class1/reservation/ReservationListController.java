@@ -1,6 +1,5 @@
 package com.petitdesert.page.class1.reservation;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -28,13 +27,6 @@ public class ReservationListController {
 		int userId = (Integer)session.getAttribute("userId");
 		
 		List<ReservationDetail> reservationList = reservationBO.getReservationList(userId);
-		
-		Date now = new Date();
-		
-		model.addAttribute("now", now);
-		
-		String dateString = "2023-05-20";
-		model.addAttribute("dateString", dateString);
 		
 		model.addAttribute("reservationList", reservationList);
 		

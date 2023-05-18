@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.petitdesert.page.class1.bo.ClassBO;
 import com.petitdesert.page.class1.model.Lesson;
 import com.petitdesert.page.class1.reservation.dao.ReservationDAO;
@@ -57,10 +56,10 @@ public class ReservationBO {
 			reservationDetail.setReservationDay(reservation.getReservationDay());
 			reservationDetail.setReservationTime(reservation.getReservationTime());
 			reservationDetail.setSituation(reservation.getSituation());
-			reservationDetail.setClassName(lesson.getClassName());
 			reservationDetail.setName(user.getName());
-			
+            reservationDetail.setClassName(lesson.getClassName());
 			reservationDetailList.add(reservationDetail);
+			
 		}
 		
 		return reservationDetailList;

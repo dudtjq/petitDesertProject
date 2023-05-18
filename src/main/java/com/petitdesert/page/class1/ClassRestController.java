@@ -16,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.petitdesert.page.class1.bo.ClassBO;
 
-
 @RestController
 @RequestMapping("/class")
 public class ClassRestController {
@@ -79,3 +78,5 @@ public class ClassRestController {
 	
 
 }
+
+
