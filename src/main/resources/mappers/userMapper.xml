@@ -11,6 +11,7 @@
   		 (
   		 	`loginId`
   		 	, `password`
+  		 	, `passwordCheck`
   		 	, `name`
   		 	, `email`
   		 	, `checkNumber`
@@ -22,6 +23,7 @@
   		 (
   		 	#{loginId}
   		 	, #{password}
+  		 	, #{passwordCheck}
   		 	, #{name}
   		 	, #{email}
   		 	, #{checkNumber}
